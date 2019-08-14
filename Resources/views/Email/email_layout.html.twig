@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <body style="color:#000;background:#f9f9f9;font-family: Arial, sans-serif;font-size:13px;font-weight:normal;">
+        <div style="width: 598px;margin: 40px auto;background:#fff;">
+            <div>
+                <img alt="{{ site_name }}" src="{{ absolute_url(asset('img/email-heading.jpg')) }}" />
+            </div>
+            <div style="margin: 0 40px;padding: 40px 0;">
+                {% block email_body %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

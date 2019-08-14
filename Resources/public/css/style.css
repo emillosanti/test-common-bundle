@@ -1,0 +1,2986 @@
+/*
+ * 1 -Fonts
+ */
+@font-face {
+    font-family: 'Avenir Light';
+    src: url('../fonts/Avenir-Light.woff2') format('woff2'),
+    url('../fonts/Avenir-Light.woff') format('woff'),
+    url('../fonts/Avenir-Light.ttf') format('truetype'),
+    url('../fonts/Avenir-Light.svg#Avenir-Medium') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Medium';
+    src: url('../fonts/Avenir-Medium.woff2') format('woff2'),
+    url('../fonts/Avenir-Medium.woff') format('woff'),
+    url('../fonts/Avenir-Medium.ttf') format('truetype'),
+    url('../fonts/Avenir-Medium.svg#Avenir-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Heavy';
+    src: url('../fonts/Avenir-Heavy.woff2') format('woff2'),
+        url('../fonts/Avenir-Heavy.woff') format('woff'),
+        url('../fonts/Avenir-Heavy.ttf') format('truetype'),
+        url('../fonts/Avenir-Heavy.svg#Avenir-Heavy') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+/*
+ * 2 - Typography
+ */
+
+/* 2.1 - Generic rules */
+body {
+    font-family: "Avenir Medium", "Trebuchet MS", sans-serif;
+    box-sizing: border-box;
+    color: #262626;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+label {
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-weight: 900;
+}
+
+.page-title {
+    font-size: 20pt;
+    color: #1A427E;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+}
+
+.spacefix {
+    margin-top: 20px;
+}
+
+/* 2.2 - Buttons */
+.btn {
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-family: "Avenir Medium", "Trebuchet MS", sans-serif;
+    font-weight: 500;
+}
+
+.btn-wide {
+    min-width: 200px;
+}
+
+.btn-light {
+    background-color: #0085da;
+    border-color: #0085da;
+    color: #fff;
+}
+
+.btn-light:hover {
+    color: #fff;
+}
+
+/* 2.3 - Tags */
+.tag {
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 11px;
+    -webkit-transition: ease 0.15s;
+    -moz-transition: ease 0.15s;
+    -ms-transition: ease 0.15s;
+    -o-transition: ease 0.15s;
+    transition: ease 0.15s;
+    cursor: pointer;
+}
+
+a.tag {
+    text-decoration: none;
+}
+
+.tag-primary {
+    background: #00196e;
+    color: #fff;
+}
+
+.tag-primary:hover {
+    color: #fff;
+    background-color: #000d3b;
+}
+
+.tag-success {
+    color: #fff;
+    background-color: #1c9c8e;
+}
+
+.tag-success:hover {
+    color: #fff;
+    background-color: #0f524b;
+}
+
+.tag-info {
+    background: #e2eaf3;
+    color: #000d5b;
+}
+
+.tag-info:hover {
+    color: #fff;
+    background: #00196e;
+}
+
+.tag.tag-title {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    font-size: 12pt;
+    text-transform: uppercase;
+}
+
+/*
+ * 3 - Layout
+ */
+html, body {
+    min-height: 100%;
+}
+
+body.no-scroll {
+    height: 100%;
+    overflow: hidden;
+}
+
+.body, .main-container {
+    height: 100%;
+}
+
+.notifications-count {
+    background: #CD0027;
+    color: #fff;
+    font-size: 11px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    border-radius: 50%;
+    text-align: center;
+}
+
+/* One Column layout */
+/* Header */
+.one-column-page-top {
+    background: #f9f9f9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.one-column-page-top .top-navigation {
+    position: static;
+    width: 100%;
+}
+
+.one-column-layout .main-container .container-fluid {
+    padding-top: 60px;
+}
+
+.top-box-shadow {
+    position: fixed;
+    left: 0;
+    top: 59px;
+    width: 100%;
+    height: 1px;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.15), 0 4px 4px 0 rgba(0,0,0,0.15), 0 2px 2px 0 rgba(0,0,0,0.15);
+    z-index: 100;
+}
+
+/* 3.1 - Left Col */
+.left-col {
+    width: 280px;
+    height: 100%;
+    padding: 0;
+    position: fixed;
+}
+
+.brand {
+    height: 60px;
+    background: #f9f9f9;
+    padding: 10px 20px 0 40px;
+    position: relative;
+}
+
+.logo {
+    display: block;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    text-align: center;
+    background: #00196e;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.logo img {
+    width: 30px;
+    height: auto;
+}
+
+.left-col .mobile-nav-button {
+    display: none;
+    position: fixed;
+    z-index: 65;
+    top: 10px;
+    left: 20px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.left-col .mobile-nav-button i {
+    font-size: 30px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.left-col .page-heading {
+    background: #e2eaf3;
+    height: 80px;
+    padding: 20px 0 20px 20px;
+}
+
+.left-col .page-heading .page-title {
+    line-height: 40px;
+    vertical-align: middle;
+    margin: 0;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-size: 20px;
+}
+
+.left-col .page-heading .mobile-search-button {
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: none;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+}
+
+.left-col .page-heading .mobile-search-button i {
+    font-size: 40px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.left-col .secondary-navigation {
+    height: calc(100% - 140px);
+    width: 100%;
+    background: #f9f9f9;
+    padding: 0 20px;
+    overflow-y: scroll;
+}
+
+.left-col .secondary-navigation .widget {
+    margin: 20px 0 0 0;
+}
+
+.left-col .secondary-navigation .widget header {
+    color: #00196e;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.left-col .secondary-navigation .widget header hr {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.left-col .secondary-navigation .widget > ul {
+    margin-bottom: 0;
+}
+
+.left-col .secondary-navigation .widget > ul li {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.left-col .secondary-navigation .widget .checkbox label {
+    color: #00196e;
+    vertical-align: middle;
+    margin-bottom: 0;
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+.left-col .secondary-navigation .widget .checkbox input[type="checkbox"] {
+    display: inline-block;
+    margin: 0 2px 0 0;
+    position: static;
+}
+
+/* 3.2 - Right col */
+.right-col {
+    width: calc(100% - 280px);
+    margin-left: 280px;
+    padding: 0;
+}
+
+.top-navigation {
+    top: 0;
+    left: 280px;
+    width: calc(100% - 280px);
+    position: fixed;
+    height: 60px;
+    background: #f9f9f9;
+    z-index: 40;
+}
+
+.top-navigation > ul {
+    float: right;
+    margin: 10px 40px 10px 0;
+}
+
+.top-navigation > ul > li {
+    display: block;
+    height: 40px;
+    float: left;
+    margin-left: 10px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.top-navigation > ul > li.separator {
+    width: 1px;
+    height: 30px;
+    margin-top: 5px;
+    border-right: solid 1px #00196e;
+}
+
+.top-navigation > ul > li:first-child {
+    padding-left: 0;
+}
+
+.top-navigation > ul > li:last-child {
+    padding-left: 40px;
+}
+
+.top-navigation > ul > li > a {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+}
+
+.top-navigation > ul > li > a.active {
+    text-decoration: underline;
+}
+
+.top-navigation .user-navigation .nav div {
+    float: left;
+    text-align: right;
+}
+.top-navigation .user-navigation .nav > li > a {
+    padding: 0;
+    display: block;
+    cursor: pointer;
+}
+
+.top-navigation .user-navigation .username,.top-navigation .user-navigation .user-company {
+    display: block;
+}
+
+.top-navigation .user-navigation .username {
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+}
+
+.top-navigation .user-navigation .user-company {
+    color: #262626;
+    font-size: 12px;
+}
+
+.top-navigation .user-navigation .user-preview img {
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.right-col .search-form {
+    top: 60px;
+    left: 280px;
+    width: calc(100% - 280px);
+    position: fixed;
+    height: 80px;
+    background: #e2eaf3;
+    padding: 20px 0;
+    z-index: 20;
+}
+
+.right-col .search-form .search-form-wrapper  {
+    border: solid 1px #8896be;
+    background: #eef2f8;
+    display: block;
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+}
+
+.right-col .search-form .search-form-wrapper input.form-control, .right-col .search-form .search-form-wrapper button {
+    background: transparent;
+    display: block;
+    border: none;
+    height: 40px;
+}
+
+.right-col .search-form .search-form-wrapper button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    width: 60px;
+}
+
+.right-col .page-content {
+    z-index: 10;
+    padding: 160px 20px 20px 20px;
+}
+
+.right-col .page-content.padding-top-sm {
+    padding-top: 80px;
+}
+
+.mobile-panel {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 45;
+    display: none;
+}
+
+#mobile-navigation-panel {
+    background: #14196D;
+    z-index: 60;
+}
+
+#mobile-navigation-panel ul {
+    margin-top: 10px;
+}
+
+#mobile-navigation-panel ul li {
+    display: block;
+    height: 60px;
+}
+
+#mobile-navigation-panel ul li a {
+    text-transform: uppercase;
+    color: #fff;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 0 20px;
+}
+
+#mobile-navigation-panel ul li .notifications-count {
+    margin-top: -10px;
+}
+
+#mobile-search-panel {
+    top: 140px;
+    background: #369CB8;
+    overflow-y: scroll;
+}
+
+#mobile-search-panel form {
+    margin: 20px;
+    padding-bottom: 150px;
+}
+
+#mobile-search-panel form input[type="text"] {
+    border: solid 2px #00196e;
+    background: #E2E9F3;
+    height: 40px;
+    border-radius: 0;
+}
+
+#mobile-search-panel form .checkbox {
+    padding: 10px 0 0 0;
+}
+
+#mobile-search-panel form .checkbox + .checkbox {
+    margin-top: 0;
+}
+
+#mobile-search-panel form .checkbox input[type="checkbox"] {
+    display: none;
+}
+
+#mobile-search-panel form .checkbox span {
+    display: inline-block;
+    border: solid 2px #00196e;
+    width: 25px;
+    height: 25px;
+    z-index: 45;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    vertical-align: middle;
+}
+
+#mobile-search-panel form .checkbox span:before {
+    position: absolute;
+    top: 1px;
+    left: 6px;
+    content: "";
+    display: none;
+    border-bottom: solid 4px #fff;
+    border-right: solid 4px #fff;
+    width: 10px;
+    height: 15px;
+    z-index: 46;
+    transform: rotate(45deg);
+}
+
+#mobile-search-panel form .checkbox input[type="checkbox"]:checked + span:before {
+    display: block;
+}
+
+#mobile-search-panel form .checkbox label {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    height: 25px;
+    line-height: 25px;
+    font-size: 20px;
+    padding-left: 40px;
+    position: relative;
+    vertical-align: middle;
+}
+
+#mobile-search-panel form button {
+    margin-top: 20px;
+}
+
+/*
+ * 4 - Contacts / Companies listing
+ */
+
+.result-tab-selector {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.result-tab-selector li {
+    display: inline-block;
+    padding-left: 20px;
+}
+
+.result-tab-selector li a, .result-tab-selector li label {
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.result-tab-selector li.active a, .result-tab-selector li a:hover, .result-tab-selector li input[type="radio"]:checked + label {
+    border-bottom: solid 4px #00196e;
+}
+
+.result-tab-selector li input[type="radio"] {
+    display: none;
+}
+
+.search-result {
+    overflow: hidden;
+}
+
+.contact-book-search .search-result {
+    overflow: visible;
+}
+
+.search-result hr {
+    width: 90%;
+    margin: 60px auto;
+}
+
+.contact-item {
+    position: relative;
+}
+
+.contact-item .contact-thumb {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.contact-item .contact-name {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 900;
+}
+
+.contact-item .contact-company {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.contact-item .contact-company, 
+.contact-item .contact-email {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+.contact-item .contact-tags {
+    margin: 5px 0 0 0;
+}
+
+.contact-item .contact-phones, 
+.contact-item .contact-emails {
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+.contact-item .users-pictures-list-title {
+    margin-bottom: 0;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-size: 13px;
+}
+
+.contact-item .users-pictures-list li {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+}
+
+.contact-item .contact-locked-icon {
+    position: absolute;
+    top: -11px;
+    left: -11px;
+    z-index: 1;
+}
+
+.contact-item.locked {
+    border: solid 2px #1c9c8e;
+}
+
+.contact-item .contact-item-right .btn { 
+    font-size: 12px; 
+}
+
+/* User read contact */
+.user-read-pending-container {
+    margin-bottom: 60px;
+    color: #00196e;
+}
+
+.user-read-pending-container img {
+    width: 35px;
+    height: 35px;
+    display: block;
+    float: left;
+    margin: 0 20px;
+}
+
+.user-read-pending-container p {
+    line-height: 17.5px;
+    font-family: "Montserrat", "Acrom", sans-serif;
+    font-size: 13px;
+}
+
+.user-read-pending-container p span {
+    display: block;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    width: 100%;
+}
+
+.pagination span {
+    display: inline-block;
+    margin: 0 4px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: #f9f9f9;
+}
+
+.pagination span a {
+    display: block;
+    vertical-align: middle;
+    height: 30px;
+    line-height: 30px;
+    color: #00196e;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.pagination span.current {
+    background: rgba(0, 25, 110, 0.8);
+    color: #fff;
+}
+
+.pagination span:hover {
+    background: #00196e;
+}
+
+.pagination span.current {
+    background: rgba(0, 25, 110, 1);
+    color: #fff;
+}
+
+.pagination span:hover a {
+    color: #fff;
+}
+
+/*
+ * 5 - Contact details
+ */
+.side-panel-overlay {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    z-index: 1100;
+    background: rgba(0, 25, 110, 0.4);
+}
+
+.side-panel-container {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 720px;
+    height: 100%;
+    z-index: 1150;
+    background-color: #fff;
+    overflow-y: scroll;
+    overflow-x: visible;
+}
+
+.side-panel-container.pending {
+    background-image: url('../img/loader.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.side-panel-container > div {
+    display: none;
+    position: relative;
+    padding-bottom: 80px;
+}
+
+.side-panel-body > section {
+    padding: 35px 40px 0;
+}
+
+.side-panel-body > section header {
+    margin-bottom: 40px;
+}
+
+.side-panel-body .side-panel-title {
+    color: #333;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 16pt;
+    padding-left: 20px;
+}
+
+.subtitle {
+    color: #00196e;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-size: 11pt;
+}
+
+/* 5.1 - Heading */
+.side-panel-body > section.contact-details {
+
+    padding: 0;
+}
+
+.contact-details header {
+    position: relative;
+    padding-top: 35px;
+}
+
+.contact-details header .heading-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200px;
+    width: 100%;
+    background: #00196e url('../../../../../../web/img/contact-heading-bg.jpg') no-repeat center;
+    z-index: 40;
+}
+
+.contact-details header .contact-heading {
+    height: 165px;
+    background: #fff;
+    margin: 0 auto;
+    width: 620px;
+    overflow: hidden;
+    z-index: 45;
+    position: relative;
+}
+
+.contact-details header .contact-picture {
+    width: 165px;
+    position: relative;
+    float: left;
+    line-height: 165px;
+}
+
+.contact-details header .contact-picture img {
+    display: block;
+    max-height: 165px;
+    vertical-align: middle;
+    width: 165px;
+}
+
+.contact-details header .contact-picture .form-group {
+    margin-bottom: 0;
+}
+
+.contact-details header .contact-picture input[type="file"] {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.contact-details header .contact-picture a {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    width: 25px;
+    height: 25px;
+    background: #00196e;
+    cursor: pointer;
+}
+
+.contact-details header .contact-picture a:hover {
+    background: #0c0e42;
+}
+
+.contact-details header .contact-picture a i {
+    color: #fff;
+    line-height: 25px;
+    vertical-align: middle;
+    display: block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+.contact-details header .contact-picture:hover a {
+    display: block;
+}
+
+.contact-details header .contact-metas {
+    float: left;
+    position: relative;
+    padding-left: 30px;
+    width: 455px;
+    height: 165px;
+    background: #fff;
+}
+
+.contact-details header .contact-metas h3 {
+    margin: 20px 0 0 0;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+}
+
+.contact-details header .contact-metas p {
+    font-size: 12pt;
+    margin-top: 5px;
+}
+
+.contact-details header .contact-metas .contact-heading-controls {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    width: 60%;
+}
+
+.contact-details header .contact-metas .contact-heading-controls .btn {
+    display: block;
+    margin-top: 5px;
+}
+
+/* 5.2 - Body */
+.contact-details .contact-body {
+    padding: 0 45px;
+    font-size: 13px;
+    position: relative;
+    z-index: 45;
+}
+
+.contact-details .contact-body .form-group p > a {
+    color: #262626;
+}
+
+.contact-details .contact-body .panel {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.contact-details .contact-body .panel .panel-heading {
+    position: relative;
+}
+
+.panel .panel-title {
+    color: #000d5b;
+    font-size: 18pt;
+    margin-bottom: 0;
+    padding: 0 0 10px 0;
+}
+
+.contact-details .contact-body .panel .panel-heading .text-locked {
+    font-size: 20px;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    text-transform: uppercase;
+    color: #1c9c8e;
+}
+
+.contact-details .contact-body .panel .panel-heading .panel-icon {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: top;
+    text-align: center;
+    color: #fff;
+    top: -13px;
+    left: -13px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.contact-details .contact-body .panel .panel-heading .panel-icon img {
+    display: block;
+    width: 25px;
+    height: auto;
+}
+
+.contact-details .contact-body .panel .panel-heading .panel-icon.info {
+    top: 9px;
+}
+
+.contact-details .contact-infos .panel-body {
+    padding-bottom: 0;
+}
+
+.panel-contact-locked {
+    border: solid 4px #1c9c8e;
+}
+
+.contact-infos.panel-contact-locked .form-group {
+    border: solid 1px #eee;
+    padding: 20px;
+}
+
+.contact-infos.panel-contact-locked .form-group.locked {
+    background: #CEE6E2;
+}
+
+.contact-history li {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.contact-history time {
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    display: block;
+}
+
+/* 5.3 - Controls */
+.side-panel-container .edge-block {
+    position: fixed;
+    width: 40px;
+    top: 80px;
+    right: 700px;
+    z-index: 45;
+}
+
+.side-panel-container .edge-block ul li {
+    margin-bottom: 10px;
+}
+
+.side-panel-container .edge-block ul li a, 
+.contact-social ul li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    background: #00196e;
+    color: #fff;
+    font-size: 16pt;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.side-panel-container .edge-block ul li a:hover, 
+.contact-social ul li a:hover {
+    background: #0c0e42;
+}
+
+.contact-social {
+    margin-top: 30px;
+}
+
+.contact-social i {
+    color: #fff;
+    font-size: 18pt;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.contact-social li a {
+    border-radius: 50%;
+}
+
+.contact-social ul li a.disabled {
+    background: #CEE6E2;
+}
+
+/**
+ * 6 - Users list
+ */
+.users-pictures-list {
+    margin-bottom: 0;
+    display: block;
+    overflow: hidden;
+    padding-top: 7.5px;
+}
+
+.users-pictures-list li {
+    display: block;
+    float: left;
+    margin: 0 20px 20px 0;
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
+.users-pictures-list li.active {
+    border: 3px solid #1c9c8e;
+}
+.users-pictures-list li img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.contact-merged-reminder-form .user-accesses-container .users-pictures-list li {
+    width: 283px;
+    height: 80px;
+    border: 1px solid #979797;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.contact-merged-reminder-form .user-accesses-container .users-pictures-list li:nth-child(2n) {
+    margin-right: 0px;
+}
+
+.contact-merged-reminder-form .user-accesses-container .users-pictures-list img {
+    display: inline-block;
+    width: 60px;
+    float: left;
+    margin-right: 15px;
+}
+
+.contact-merged-reminder-form .user-accesses-container .users-pictures-list div {
+    float: left;
+    margin: 10px 0px;
+}
+
+.contact-merged-reminder-form .user-accesses-container .users-pictures-list div span {
+    color: #979797;
+}
+
+.users-pictures-list li .remove-contact-access,
+.users-pictures-list li .remove-item {
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: #00196e;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0;
+    transition: ease 0.15s;
+}
+
+.users-pictures-list li .remove-contact-access:hover,
+.users-pictures-list li .remove-item:hover {
+    background: #0c0e42;
+}
+
+.users-pictures-list li:hover a {
+    opacity: 1;
+}
+
+.users-pictures-list li.add-user-access {
+    padding: 10px 0;
+}
+
+.users-pictures-list li.add-user-access a {
+    display: block;
+    background: #00196e;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    line-height: 37px;
+    border-radius: 0;
+    font-size: 24pt;
+}
+
+.users-pictures-list li.add-user-access a:hover {
+    background: #0c0e42;
+}
+
+.user-accesses-container .users-pictures-list li {
+    margin-top: 10px;
+}
+
+.user-accesses-container .form-group:last-child {
+    margin-bottom: 0px;
+}
+
+.access-request textarea, .contact-note-body textarea {
+    min-height: 150px;
+}
+
+.contact-note-wrapper {
+    margin-bottom: 20px;
+}
+
+.contact-note-wrapper h4 {
+    color: #000d5b;
+    margin-top: 0;
+}
+
+.blue-title {
+    color: #000d5b;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding: 0 0 10px 0;
+}
+
+
+.blue-small-title {
+    color: #000d5b;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0 0 5px 0;
+}
+
+.contact-tags li {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.contact-tags li:last-child {
+    padding-right: 0;
+}
+
+.unmerged-contact-panel {
+    font-size: 10pt;
+}
+
+.unmerged-contact-panel .contact-name {
+    margin: 0 0 5px 0;
+    color: #00196e;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-size: 16pt;
+}
+
+.unmerged-contact-panel ul.contact-phones li {
+    display: block;
+}
+
+/*
+ * Reminder Deadline options list
+ */
+#contact_merged_reminder_deadline {
+    min-height: 115px;
+    margin: 10px 0px;
+}
+
+.reminder-options-list {
+    margin-bottom: 0;
+    display: block;
+    overflow: hidden;
+}
+
+.reminder-options-list li {
+    display: block;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 30px;
+    min-width: 100px;
+    min-height: 90px;
+}
+
+.reminder-options-list li.active {
+    border: 1px solid #979797;
+    background: #fff;
+    padding: 9px;
+}
+
+.reminder-options-list li:hover {
+    border: 1px solid #979797;
+    background: #fff;
+    padding: 9px;
+}
+
+
+.reminder-options-list li span {
+    display: inline-block;
+}
+
+.reminder-options-list li span span {
+    font-size: 12px;
+    -webkit-text-stroke: 0px #f9f9f9 !important;
+    position: relative;
+    top: -3px;
+}
+
+.reminder-options-list li .fa-thin-1x {
+    -webkit-text-stroke: 1px #f9f9f9;
+}
+
+.reminder-options-list li:hover .fa-thin-1x {
+    -webkit-text-stroke: 1px #fff;
+}
+
+.reminder-options-list li .fa-thin-3x {
+    -webkit-text-stroke: 3px #f9f9f9;
+}
+
+.reminder-options-list li:hover .fa-thin-3x {
+    -webkit-text-stroke: 3px #fff;
+}
+
+.reminder-options-list li .fa-thin-4x {
+    -webkit-text-stroke: 4px #f9f9f9;
+}
+
+.reminder-options-list li:hover .fa-thin-4x {
+    -webkit-text-stroke: 4px #fff;
+}
+
+.reminder-options-list li input {
+    max-width: 100px;
+}
+
+#reminder-time-options {
+    display: none;
+}
+
+#reminder-time-options li[data-hour="custom"] {
+    border: 0px;
+    background: initial;
+    padding: 10px;
+}
+
+#reminder-datepicker-option {
+    display: none;
+    margin: 10px 0px;
+}
+
+#reminder-timepicker {
+    position: relative;
+    padding: 0 30px;
+}
+
+.reminder-deadline-box {
+    border: 1px solid #979797;
+    background: #fff;
+    padding: 20px;
+    display: inline-block;
+    margin: 10px 0px;
+}
+
+.reminder-deadline-box span {
+    float: left;
+}
+
+.reminder-deadline-box a {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    background: #1E9C90;
+    text-align: center;
+    vertical-align: middle;
+    float: right;
+    color: #fff;
+    margin-left: 15px;
+}
+
+/* Datepicker / Timepicker Styles */
+
+.reminder-datepicker-trigger {
+    color: #333;
+    border: 1px solid #979797;
+    padding: 6px 13px 8px;
+    margin-left: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.reminder-datepicker-trigger:hover {
+    background: #fff;
+}
+
+button.ui-datepicker-trigger i.fa.icon-calendar {
+    color: black;
+}
+
+.ui-timepicker-container {
+    z-index: 1200 !important;
+}
+
+/*
+ * Notifications listing
+ */
+.notifications-list > li {
+    margin-bottom: 20px;
+    border: 4px solid #1c9c8e;
+}
+
+.notifications-list > li.notification-denied {
+    border-color: #684b77;
+}
+
+.notifications-list hr {
+    width: 90%;
+    margin: 60px auto;
+}
+
+.notifications-list .contact-item {
+    margin-bottom: 0;
+}
+
+.notifications-list .contact-item.locked {
+    border: none;
+}
+
+.notifications-list .contact-locked-icon,
+.notifications-list .users-pictures-list-container,
+.notifications-list .contact-item .btn{
+    display: none !important;
+}
+
+.notification-item .notification-avatar {
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin-right: 20px;
+}
+
+.notification-item .notification-avatar-small {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 10px;
+}
+
+.notification-item .notification-avatar img {
+    display: block;
+    height: auto;
+}
+
+.notification-item .notification-identity {
+    float: left;
+}
+
+.notification-item .notification-identity .notification-name {
+    margin: 5px 0 0 0;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    color: #00196e;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+}
+
+.notification-item .notification-identity .notification-company, .notification-item .notification-address {
+    font-size: 10pt;
+    color: #666666;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.notification-item .notification-email {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.notification-item .notification-tags {
+    margin: 5px 0 0 0;
+}
+
+.notification-item .users-who-can-see-notification {
+    padding-top: 0;
+}
+
+.notification-item .users-who-can-see-notification li {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.btn-notification {
+    margin-bottom: 10px;
+}
+
+.notification-bloc {
+    padding-bottom: 40px;
+}
+
+.btn-green {
+    color: #fff;
+    background-color: #1E9C90;
+    border-color: #1E9C90;
+}
+
+.merge-contact-form h1 {
+    color: #000d5b;
+    font-size: 20px;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.merge-contact-form .contact-name {
+    color: #00196e;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-size: 22px;
+    margin: 0 0 5px 0;
+}
+
+.merge-contact-form .panel-heading .panel-title {
+    color: #000d5b;
+    font-size: 22px;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+}
+
+.merge-contact-form .panel-heading hr {
+    margin: 10px 0 0 0;
+}
+
+.merge-contact-form label {
+    display: block;
+    margin: 0 0 20px 0;
+    width: 70%;
+    cursor: pointer;
+}
+
+.merge-contact-form label span {
+    display: block;
+    border: solid 3px rgba(28, 156, 142, 0.4);
+    padding: 20px;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    line-height: 1em;
+}
+
+.merge-contact-form label span p {
+    margin-bottom: 0;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.merge-contact-form input[type="radio"], .merge-contact-form input[type="checkbox"] {
+    display: none;
+}
+
+.merge-contact-form input[type="radio"]:checked+span, .merge-contact-form input[type="checkbox"]:checked+span {
+    border: solid 3px rgba(28, 156, 142, 1);
+}
+
+.merge-contact-form label.picture-selector {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0;
+}
+
+.merge-contact-form label.picture-selector span {
+    padding: 0;
+}
+
+.merge-contact-form label.picture-selector img {
+    display: block;
+    width: 80px;
+    height: 80px;
+}
+
+.contact-merged-form .contact-tags li a {
+    display: block;
+    float:left;
+    text-decoration: none;
+}
+
+.contact-merged-form .contact-tags li a:hover {
+    background: #e2eaf3;
+    color: #000d5b;
+}
+
+.contact-merged-form .contact-categories li {
+    display: inline-block;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.contact-merged-form .contact-categories li:last-child {
+    padding-right: 0;
+}
+
+.contact-merged-form .contact-categories li label span {
+    cursor: pointer;
+    padding: 6px 10px;
+    font-size: 10pt;
+    background: #ececec;
+    color: #535353;
+    font-weight: 500;
+}
+
+.contact-merged-form .contact-categories li label input[type="checkbox"]:checked+span {
+    background: #e2eaf3;
+    color: #000d5b;
+}
+
+.contact-merged-form .contact-categories li input {
+    display: none;
+}
+
+.contact-merged-form .input-group-addon {
+    border: none;
+}
+
+form .input-group-addon-primary {
+    background: #00196e;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.contact-merged-form .contact-social-label {
+    text-transform: capitalize;
+}
+
+.contact-merged-form .sub-form {
+    display: none;
+}
+
+/* Error pages */
+.body-error {
+    background: #4AB33C url('../../../../../../web/img/error-bg.jpg') no-repeat;
+    background-size: cover;
+    color: #fff;
+    min-height: 100%;
+}
+
+.body-error .container {
+    margin-top: 40px;
+}
+
+.body-error .error-header a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.body-error .error-header hr {
+    margin-top: 10px;
+    border-top: solid 3px #fff;
+}
+
+.body-error .error-header .logo {
+    margin-top: 0;
+    position: absolute;
+    z-index: 20;
+}
+
+.error-body {
+    margin-top: 120px;
+}
+
+.body-error .error-body .btn-warning {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 14px 30px;
+}
+
+.body-error .error-body h1 {
+    text-transform: uppercase;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-size: 70px;
+    letter-spacing: -3px;
+    margin-top: 60px;
+}
+
+.body-error .error-body p {
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+.show-header {
+    background: #E2E9F2;
+    padding: 30px 0 15px 0;
+}
+
+.show-header .name-wrapper {
+    display: table;
+    margin-left: 40px;
+}
+
+.show-header .logo {
+    display: table-cell;
+    width: 120px;
+    position: relative;
+}
+
+.show-header .logo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 10;
+}
+
+.show-header .logo input[type="file"] {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.show-header .logo a {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    width: 25px;
+    height: 25px;
+    background: #00196e;
+    cursor: pointer;
+}
+
+.show-header .logo a:hover {
+    background: #0c0e42;
+}
+
+.show-header .logo a i {
+    color: #fff;
+    line-height: 25px;
+    vertical-align: middle;
+    display: block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+.show-header .logo:hover a {
+    display: block;
+}
+
+.show-header .name {
+    display: table-cell;
+    padding-left: 20px;
+}
+
+.show-header .name .page-title {
+    text-transform: capitalize;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+}
+
+.show-header .name p {
+    text-transform: uppercase;
+}
+
+.save-btn-wrapper {
+    margin: 15px 40px 0 0;
+    overflow: hidden;
+}
+
+.save-btn-wrapper button {
+    float: right;
+}
+
+.company-body-wrapper {
+    margin: 40px 10%;
+}
+
+.company-body-wrapper .form-group label {
+    color: #000d5b;
+    font-weight: 500;
+}
+
+.company-contacts {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.company-contacts li {
+    display: block;
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.company-contacts li:nth-child(2n) {
+    margin-left: 4%;
+}
+
+.contact-merged-preview {
+    display: table;
+    width: 100%;
+    padding: 5px;
+    background: #fff;
+    border: solid 1px #333;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.contact-merged-preview .contact-picture {
+    width: 30px;
+    height: 30px;
+    display: table-cell;
+}
+
+.contact-merged-preview .contact-picture img {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.contact-merged-preview .contact-info {
+    display: table-cell;
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+.contact-merged-preview .contact-info .contact-name {
+    color: #000d5b;
+    font-family: "Avenir Heavy", "Trebuchet MS", sans-serif;
+    font-size: 14px;
+}
+
+.contact-merged-preview .contact-info .contact-job {
+    display: block;
+}
+
+.contact-merged-preview .remove-item {
+    display: none;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    background: #000d5b;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -10px -10px 0 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.contact-merged-preview .edit-item{
+    display: none;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    background: #1E9C90;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -10px -10px 0 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.remove-item i, .edit-item i{
+    color: #fff;
+}
+
+.contact-merged-preview:hover .remove-item,
+.contact-merged-preview:hover .edit-item{
+    display: block;
+}
+
+.contact-company-panel .contact-company-infos {
+    display: table;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.contact-company-panel .company-logo {
+    width: 120px;
+    display: table-cell;
+}
+
+.contact-company-panel .company-logo img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    border: none;
+}
+
+.contact-company-panel .company-infos {
+    padding-left: 20px;
+    display: table-cell;
+    vertical-align: top;
+}
+
+.form-control {
+    border-radius: 0;
+    border: solid 1px #a5a8bd;
+}
+
+select.form-control {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    background-position:right 50%;
+    background-repeat:no-repeat;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=);
+    padding: .5em;
+    padding-right:1.5em;
+}
+
+.select2-container {
+    z-index: 1200;
+}
+
+.select2-container--default .select2-selection--single {
+    border-radius: 0;
+    height: 34px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 34px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 34px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #28427d transparent transparent transparent;
+}
+
+.deals-list {
+    margin-top: 5px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.deals-list > li {
+    width: 32%;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.deals-list > li:first-child, .deals-list > li:nth-child(3n + 1) {
+    margin-left: 0;
+}
+
+.deal-card {
+    display: block;
+    border: solid 1px #a6a5be;
+    background: #fff;
+    position: relative;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.deal-card:hover {
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.deal-card .company .name {
+    font-size: 16px;
+    display: block;
+}
+
+.deal-card .company .name .project-name {
+    font-weight: 300;
+    font-family: 'Avenir Light';
+}
+
+.deal-card .ticket {
+    color: #028ddc;
+    font-size: 14px;
+    width: 30%;
+    text-align: right;
+}
+
+.deal-card .deal-card-body > div > span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.deal-card-foot {
+    display: table;
+    width: 100%;
+    background: #f9f9f9;
+    padding: 10px 20px;
+}
+
+
+.deal-card .deal-card-foot > div {
+    display: table-cell;
+    width: 33%;
+    text-align: center;
+}
+
+.deal-card .deal-card-foot > div > span {
+    display: block;
+    font-size: 13px;
+    color: #8c8c8c;
+}
+
+.deal-card .deal-card-foot > div:last-child {
+    vertical-align: middle;
+}
+
+.deal-card .deal-card-foot > div:last-child > span {
+    font-size: 16px;
+}
+
+.deal-card.highlight-deal .company .project-name,
+.deal-card.highlight-deal .company .description {
+    color: #425493;
+}
+
+.deal-card.highlight-deal .deal-card-body > div {
+    color: #333;
+    font-weight: 300;
+    font-family: 'Avenir Light';
+}
+
+.deal-card.highlight-deal .deal-card-body > div > span {
+    font-weight: 500;
+    font-family: 'Avenir Medium';
+}
+
+.deal-card.highlight-deal .deal-card-foot {
+    font-size: 16px;
+}
+
+.deal-card.highlight-deal .deal-card-foot > div {
+    width: 50%;
+    text-align: left;
+    color: #000000;
+}
+
+.deal-card.highlight-deal .deal-card-foot > div:last-child {
+    text-align: right;
+}
+
+.deal-card .deal-card-foot > div:last-child > span > span {
+    display: inline-block;
+    background: #000000;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.slider-range-wrapper .ui-widget.ui-widget-content.ui-slider-horizontal {
+    border: none;
+    background: #e0e8f3;
+    height: 8px;
+}
+
+.slider-range-wrapper .ui-slider-horizontal .ui-slider-handle {
+    background: #21006f;
+    border: solid 1px #21006f;
+    border-radius: 50%;
+}
+
+.slider-range-wrapper .ui-slider-range {
+    background: #21006f;
+    height: 4px;
+}
+
+.slider-range-legend {
+    position: relative;
+    margin: 10px 0 30px 0;
+}
+
+.slider-range-legend > span {
+    position: absolute;
+    color: #000d5b;
+    font-size: 14px;
+    display: block;
+    width: 30px;
+    top: 0;
+    text-align: center;
+    margin-left: -15px;
+}
+
+.slider-range-wrapper .slider-min-wrapper, .slider-range-wrapper .slider-max-wrapper {
+    display: none;
+}
+
+.create-deal-flow-wrapper .go-back {
+    display: block;
+    margin: 40px 0 80px 0;
+}
+
+.create-deal-flow-wrapper .form-title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.create-deal-flow-wrapper h1 {
+    color: #00196e;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.deal-flow-search-company-head {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.deal-flow-search-company-head h2 {
+    color: #00196e;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.deal-flow-search-company-body .form-head label {
+    color: #676767;
+}
+
+.deal-flow-search-company-body .form-head .form-legend {
+    color: #9e9e9e;
+    padding-left: 10px;
+}
+
+.deal-flow-search-company-body .form-body {
+    background: #fff;
+    border: solid 1px #e0e8f3;
+    overflow: hidden;
+}
+
+.deal-flow-search-company-body .form-body input {
+    border: none;
+    outline: none;
+    display: block;
+    width: calc(100% - 40px);
+    float: left;
+}
+
+.deal-flow-search-company-body .form-body button {
+    display: block;
+    width: 40px;
+    float: left;
+    border-radius: 0px;
+}
+
+.deal-flow-search-company-body .form-result ul li {
+    margin-top: 20px;
+}
+
+.deal-flow-search-company-body .form-result .company-preview {
+    display: table;
+    width: 100%;
+    border: solid 1px #989898;
+    background: #fff;
+}
+
+.deal-flow-search-company-body .form-result .company-preview .picture, .form-result .company-preview .infos, .form-result .company-preview .select {
+    display: table-cell;
+    padding: 5px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.deal-flow-search-company-body .form-result .company-preview .picture {
+    width: 40px;
+}
+
+.deal-flow-search-company-body .form-result .company-preview .picture img {
+    width: 40px;
+    height: 40px;
+}
+
+.deal-flow-search-company-body .form-result .company-preview .infos .name {
+    font-size: 14px;
+    color: #0c0e42;
+}
+
+.deal-flow-search-company-body .form-result .company-preview .infos .sector {
+    color: #5c5c5c;
+    display: block;
+}
+
+.deal-flow-search-company-body .form-result .company-preview .select {
+    width: 33%;
+    text-align: right;
+}
+
+.deal-import-file-wrapper {
+    position: relative;
+    padding: 120px 0;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    border: dashed 1px #0085da;
+    text-align: center;
+}
+
+.deal-import-file-wrapper .deal-import-file-placeholder {
+    z-index: 9;
+}
+
+.deal-import-file-wrapper .deal-import-file-placeholder h5 {
+    margin: 20px 0;
+    color: #00196e;
+    font-weight: 700;
+}
+
+.deal-import-file-wrapper .deal-import-file-placeholder p {
+    max-width: 200px;
+    margin: 0 auto;
+    color: #00196e;
+    font-size: 13px;
+}
+
+.deal-import-file-wrapper .vich-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+}
+
+.deal-flow-form {
+    margin-bottom: 20px;
+}
+
+.deal-flow-form .panel-heading {
+    color: #00196e;
+    font-size: 15px;
+}
+
+.deal-flow-form .checkbox label {
+    font-size: 15px;
+}
+
+.company-metrics {
+    padding: 15px 0 0 0;
+    position: relative;
+    min-height: 60px;
+}
+
+.company-metrics .add-metric-item {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.company-metrics li {
+    border-bottom: solid 1px #e7e8ed;
+    padding: 15px;
+}
+
+.company-metrics li:last-child {
+    border-bottom-color: transparent;
+}
+
+.company-metrics .toggle-year {
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.company-metrics .year-wrapper button {
+    display: none;
+}
+
+.company-metrics .year-wrapper:hover button {
+    display: block;
+}
+
+.company-metrics .fa-chevron-right {
+    display: none;
+}
+
+.company-metrics .fa-chevron-down {
+    display: inline-block;
+}
+
+.company-metrics .collapsed .fa-chevron-right {
+    display: inline-block;
+}
+
+.company-metrics .collapsed .fa-chevron-down {
+    display: none;
+}
+
+.company-metrics .collapse.in {
+    padding-top: 20px;
+}
+
+.deal-form-wrapper {
+    position: relative;
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+.deal-form-wrapper .form-vertical-separator {
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    z-index: 1;
+    background: #a6a5be;
+    left: 50%;
+    top: 0;
+}
+
+.show-deal-flow .deal-flow-form {
+    margin-top: 40px;
+}
+
+.show-deal-flow .save-btn-wrapper {
+    float: right;
+}
+
+.deal-flow-highlight {
+    float: right;
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    border: solid 1px #23337f;
+    color: #23337f;
+    border-radius: 25px;
+    font-size: 20px;
+    margin: 7.5px 30px 0 0;
+    transition: 0.25s ease;
+}
+
+.deal-flow-highlight:hover, .deal-flow-highlight.active {
+    border-color: #fff;
+    color: #fff;
+    background: #23337f;
+}
+
+.deal-flow-highlight.active:hover {
+    border-color: #23337f;
+    color: #23337f;
+    background: transparent;
+}
+
+.deal-step-wrapper input {
+    display: none;
+}
+
+.deal-step-wrapper label {
+    border: solid 1px #23337f;
+    color: #23337f;
+    padding: 4px 8px;
+    background: #fff;
+    display: inline-block;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.deal-steps {
+    margin-left: 55px;
+    border-top: solid 4px #23337f;
+    margin-right: -15px;
+}
+
+.deal-steps ul {
+    position: relative;
+    text-align: center;
+}
+
+.deal-steps ul:before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    height: 4px;
+    width: 50%;
+    background: #0085da;
+}
+
+.deal-steps ul li {
+    display: inline-block;
+}
+
+.deal-steps ul li:first-child {
+    margin-left: 200px;
+}
+
+.deal-steps ul li a {
+    display: block;
+    position: relative;
+    padding: 2px 80px 0 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #020202;
+    font-size: 12px;
+    min-height: 30px;
+}
+
+.deal-steps ul li a:hover {
+    text-decoration: none;
+}
+
+.deal-steps ul li a:before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    height: 4px;
+    width: 100%;
+    background: #23337f;
+}
+
+.deal-steps ul li:last-child a:before {
+    display: none;
+}
+
+.deal-steps ul li a span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    top: -15px;
+    left: 0;
+    position: absolute;
+    border-radius: 50%;
+    background: #23337f;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.deal-steps ul li a:hover:before, .deal-steps ul li a.active:before, .deal-steps ul li a:hover span, .deal-steps ul li a.active span {
+    background: #0085da;
+}
+
+.show-deal-flow .panel-heading hr,
+.metrics-wrapper .panel-heading hr {
+    margin: 0;
+}
+
+.metrics-wrapper .panel-heading small {
+    display: block;
+    margin-bottom: 10px;
+    color: #23337f;
+}
+
+.timeline-entries li {
+    margin-top: -3px;
+    padding-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-entries li:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-entries li:before {
+    height: 50%;
+    position: absolute;
+    width: 1px;
+    top: 45px;
+    left: 13px;
+    content: "";
+    border: dashed 1px #21006f;
+
+}
+
+.timeline-entries li.done:before {
+    left: 12px;
+    border: solid 2px #00a191;
+}
+
+.timeline-entries li:last-child:before {
+    display: none;
+}
+
+.timeline-entry {
+    position: relative;
+    padding-left: 50px;
+}
+
+.timeline-entry:before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 26px;
+    height: 26px;
+    border: solid 2px #21006f;
+    border-radius: 50%;
+}
+
+.timeline-entry:after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 7px;
+    width: 12px;
+    height: 12px;
+    background: #21006f;
+    border-radius: 50%;
+}
+
+.timeline-entries li.done .timeline-entry:before {
+    border-color: #00a191;
+}
+
+.timeline-entries li.done .timeline-entry:after {
+    background: #00a191;
+}
+
+.timeline-entry .entry-label {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: #000d5b;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.timeline-entry .entry-infos {
+    color: #676767;
+}
+
+.timeline-entry .entry-infos time {
+    font-weight: bold;
+}
+
+.timeline-entry .remove-entry {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    opacity: 0;
+    cursor: pointer;
+}
+.timeline-entry:hover .remove-entry {
+    opacity: 0.3;
+}
+.timeline-entry .remove-entry:hover {
+    opacity: 1;
+}
+.timeline-entry .remove-entry:before, .timeline-entry .remove-entry:after {
+    position: absolute;
+    left: 15px;
+    content: "";
+    height: 33px;
+    width: 2px;
+    background-color: #727272;
+}
+.timeline-entry .remove-entry:before {
+    transform: rotate(45deg);
+}
+.timeline-entry .remove-entry:after {
+    transform: rotate(-45deg);
+}
+
+.tabbed-panel .nav-tabs {
+    border-bottom-color: #a6a5be;
+}
+
+.tabbed-panel .nav-tabs li {
+    border: none;
+}
+
+.tabbed-panel .nav-tabs li a {
+    color: #1a1a1a;
+    border: none;
+    border-radius: 0;
+}
+
+.tabbed-panel .nav-tabs li.active a,
+.tabbed-panel .nav-tabs li:hover a {
+    background: #0085da;
+    color: #fff;
+}
+
+.tabbed-panel .tab-pane {
+    padding: 30px 20px 0 20px;
+}
+
+.step-documents-title {
+    display: block;
+    color: #101010;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.deal-flow-documents .tab-pane ul li:before {
+    content: "\e91e";
+    font-family: 'icomoon';
+    font-size: 32px;
+    left: 0;
+    position: absolute;
+}
+
+.deal-flow-documents .tab-pane ul li {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    /*background: url('../img/document.png') no-repeat left center;*/
+    padding-left: 40px;
+    min-height: 32px;
+    font-size: 13px;
+    color: #101010;
+}
+
+.deal-flow-documents .tab-pane ul li:last-child {
+    margin-bottom: 0;
+}
+
+.deal-flow-documents .tab-pane ul li a {
+    text-decoration: underline;
+    font-size: 14px;
+    color: #101010;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.deal-flow-documents .add-dropbox-document-btn,
+.deal-flow-documents .add-document-btn {
+    margin: 20px;
+}
+
+.deal-flow-steps-manager-wrapper {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    background: #0085da;
+}
+
+.cancelled-deals > li {
+    margin-bottom: 20px;
+    display: block;
+}
+
+.cancelled-deal-card {
+    border: solid 1px #23337f;
+    background: #fff;
+    padding: 20px;
+}
+
+.cancelled-deal-card .cancelled-deal-head {
+    display: table;
+    width: 100%;
+}
+
+.cancelled-deal-card .cancelled-deal-head > div {
+    display: table-cell;
+}
+
+.cancelled-deal-card .cancelled-deal-head .status {
+    color: #23337f;
+    font-size: 16px;
+}
+
+.cancelled-deal-card .cancelled-deal-head .status span {
+    font-weight: bold;
+}
+
+.cancelled-deal-card .cancelled-deal-head .cancelled-at {
+    text-align: right;
+    color: #363636;
+    font-weight: bold;
+}
+
+.cancelled-deal-card > ul {
+    display: flex;
+    margin: 20px 0;
+}
+
+.cancelled-deal-card > ul li {
+    border-bottom: solid 4px #e7ebf2;
+    margin: 0 4px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 4px;
+    overflow: hidden;
+}
+
+.cancelled-deal-card > ul li:first-child {
+    margin-left: 0;
+}
+
+.cancelled-deal-card > ul li:last-child {
+    margin-right: 0;
+}
+
+.cancelled-deal-card .cancelled-deal-foot {
+    display: table;
+    width: 100%;
+}
+
+.cancelled-deal-card .cancelled-deal-foot > * {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cancelled-deal-card .cancelled-deal-foot span {
+    width: 20%;
+    text-align: center;
+    color: #686868;
+}
+
+.cancelled-deal-card .cancelled-deal-foot div {
+    width: 40%;
+}
+
+.edit-company-metrics, .show-company-metrics {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    background: #00a191;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.show-company-metrics, .company-metrics-form {
+    display: none;
+}
+
+#company-metrics-chart {
+    width: 100%;
+    height: 300px;
+}
+
+.metrics-chart-legend li {
+    border-bottom: none;
+    padding: 4px 0 4px 40px;
+    position: relative;
+}
+
+.metrics-chart-legend li:before {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 15px;
+    top: 4px;
+    left: 15px;
+    border-radius: 50%;
+}
+
+.ca:before {background: #21006f;}
+.ebitda:before {background: #814586;}
+.ebit:before {background: #00a091;}
+.dfn:before {background: #35a1d8;}
+
+.metric-keynumber {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 30px;
+    color: #21006f;
+    font-weight: bold;
+}
+
+.metric-keynumber span {
+    display: block;
+    font-weight: normal;
+    font-size: 22px;
+}
+
+.deal-flow-layout li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.deal-flow-layout input[type="radio"] {
+    display: none;
+}
+
+.deal-flow-layout label {
+    color: #acacac;
+    opacity: 0.4;
+    font-size: 40px;
+}
+
+.deal-flow-layout label:hover, .deal-flow-layout input[type="radio"]:checked + label {
+    color: #23337f;
+    opacity: 1;
+}
+.deal-flow-table {
+    margin-top: 20px;
+}
+
+
+.deal-flow-table > thead > tr > th {
+    color: #23337f;
+    padding: 12px;
+    border: none;
+    border-right: solid 1px #d8d8e4;
+}
+
+.deal-flow-table > tbody > tr > td {
+    border: none;
+    border-right: solid 1px #d8d8e4;
+    padding: 12px;
+    vertical-align: top;
+}
+.deal-flow-table .step-name {
+    vertical-align: middle;
+    text-align: center;
+    width: 30px;
+
+}
+
+.deal-flow-table .step-name span {
+    display: block;
+    color: #fff;
+    font-weight: bold;
+}
+
+.activity-form hr {
+    margin: 0 0 5px 0;
+}
+
+.appointment-contacts-merged {
+    margin-top: 20px;
+    display: flex;
+}
+
+.appointment-contacts-merged li {
+    display: block;
+    padding-right: 10px;
+    width: 50%;
+}
+
+.appointment-contacts-merged li:nth-child(2n) {
+    padding-right: 0;
+    padding-left: 10px;
+    clear: right;
+}
+
+.contacts-appointment-title {
+    margin-top: 20px;
+    color: #0c0e42;
+    font-weight: 700;
+}
+
+.metrics-wrapper {
+    margin-top: 20px;
+}
+
+.deal-flow-metrics-form {
+    margin: 20px 0;
+}
+
+.deals-metrics-chart-wrapper {
+    padding: 20px;
+}
+
+.deals-metrics-chart {
+    width: 100%;
+    display: block;
+}
+
+.deal-step-chart {
+
+}
+
+.deal-step-chart-body {
+    display: flex;
+    margin-top: 30px;
+}
+
+.deal-step-chart-body > div {
+    text-align: center;
+    height: 150px;
+    position: relative;
+    border-bottom: solid 1px #c7c7c7;
+}
+
+.deal-step-chart-body > div .column-label {
+    position: absolute;
+    display: block;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin-top: -30px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    color: #23337f;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.deal-step-chart-body > div .column-bar {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    background: #23337f;
+}
+
+.deal-step-chart-footer {
+    display: flex;
+    margin-top: 10px;
+}
+
+.deal-step-chart-footer > div {
+    text-align: center;
+}
+
+.deal-step-chart-footer > div span {
+    display: block;
+}
+
+.deal-step-chart-footer > div .relative-value {
+    display: block;
+    color: #23337f;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.steps-metrics-panel {
+    margin-top: 40px;
+}
+
+
+.highlight-deal-flow-form {
+    display: block;
+    margin: 80px 0 30px;
+}
+
+.highlight-deal-flow-form h1 {
+    margin-bottom: 80px;
+    color: #000d5b;
+    font-weight: bold;
+}
+
+.highlight-deal-flow-form label {
+    color: #fff;
+    margin-right: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.highlight-deal-flow-form label input {
+    display: none;
+}
+
+.highlight-deal-flow-form label span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    border-radius: 12.5px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.companies-choices > .no-result {
+    color: #676767;
+    margin-top: 20px;
+}
+
+.tooltip-wrapper {
+  display: inline-block; /* display: block works as well */
+}
+
+.tooltip-wrapper .btn[disabled] {
+  /* don't let button block mouse events from reaching wrapper */
+  pointer-events: none;
+}
+
+.tooltip-wrapper.disabled {
+  /* OPTIONAL pointer-events setting above blocks cursor setting, so set it here */
+  cursor: not-allowed;
+}

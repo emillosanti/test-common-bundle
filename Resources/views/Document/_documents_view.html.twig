@@ -1,0 +1,50 @@
+<section class="panel documents-wrapper">
+    <div class="panel-heading">
+        <h4>Documents</h4>
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <div class="panel-body panel-body-clean">
+                <section class="tabbed-panel">
+                    <ul class="nav nav-tabs" role="tablist">
+                        {% for category in categories %}
+                            <li data-category="{{ category.id }}" role="presentation" class="category {% if loop.first %}active{% endif %}">
+                                <a href="#legal_entity_{{ entityId }}_category_{{ category.id }}_documents" role="tab" data-toggle="tab">{{ category.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="tab-content categories">
+                        {# prototype #}
+                        <ul id="prototype">{% include "@SAMCommon/Document/_document.html.twig" %}</ul>
+
+                        {% for category in categories %}
+                            <div role="tabpanel" class="category tab-pane {% if loop.first %}active{% endif %}" id="legal_entity_{{ entityId }}_category_{{ category.id }}_documents">
+
+                                {% set hasItems = false %}
+                                <ul class="list-unstyled documents">
+                                    {% for document in documents %}
+                                        {% if document.category.id == category.id %}
+                                            {% set hasItems = true %}
+
+                                            {% include "@SAMCommon/Document/_document.html.twig" %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+
+                                <p class="no-result text-center {% if hasItems %}hidden{% endif %}">Aucun document n'a été ajouté pour le moment pour la catégorie <strong>{{ category.name }}</strong></p>
+
+                                <form data-category="{{ category.id }}" data-create action="{{ path('document_create', { entity: entity, id: entityId }) }}" method="post" class="text-center">
+                                    <button data-add class="btn btn-muted btn-sm">
+                                        <i class="fa fa-plus"></i>
+                                        Ajouter un document
+                                    </button>
+                                </form>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>

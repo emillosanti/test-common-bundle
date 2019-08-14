@@ -1,0 +1,21 @@
+{% form_theme form '@SAMCommon/Form/theme_mobile.html.twig' %}
+
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-xs-12">
+            {{ form_widget(form.query, {attr:{placeholder: "Rechercher"}}) }}
+        </div>
+    </div>
+    {% if form.categories is defined %}
+        <div class="row">
+            <div class="col-xs-12">
+                {{ form_widget(form.categories) }}
+            </div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary btn-block" type="submit">Valider</button>
+        </div>
+    </div>
+{{ form_end(form) }}

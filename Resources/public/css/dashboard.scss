@@ -1,0 +1,123 @@
+.dashboard-container {
+	&>.row {
+		margin-bottom: 20px;
+	}
+
+	.panel-heading {
+		position: relative;
+
+		.view-more {
+			float: right;
+		}
+	}
+
+	.tiles {
+		.metrics-list {
+			list-style-type: none;
+			display: flex;
+			padding: 0;
+
+			.metric-item {
+				padding: 0 15px 0 0;
+				margin: 0 15px 0 0;
+				border-right: 1px solid $main-border;
+				color: $main-color;
+				&:last-child {
+					border: none;
+					margin: 0;
+				}
+				.metric-title {
+					
+				}
+				.metric-value {
+					font-weight: bold;
+				}
+			}
+		}
+
+		.progression {
+			margin-top: 5px;
+
+			.progression-value {
+				font-weight: bold;
+			}
+			.positive {
+				color: $success-color;
+			}
+			.negative {
+				color: $warning-color;
+			}
+			.progression-label {
+				color: $text-color-lighter;
+			}
+		}
+	}
+
+	.last-contact-item {
+		margin-bottom: 20px;
+	}
+
+	.news-container {
+		article {
+			margin-bottom: 6px;
+
+			.media-object {
+				max-width: 80px;
+				@include respond-below(lg) {
+					max-width: 60px;
+				}
+				@include respond-below(sm) {
+					max-width: 50px;
+				}
+			}
+		}
+	}
+
+	.canvas-holder {
+		width: 100%;
+	}
+
+	.deal-funnel {
+		.canvas-holder {
+			canvas {
+				height: 250px;
+				@include respond-below(lg) {
+					height: 200px;
+				}
+				@include respond-below(sm) {
+					height: 400px;
+				}
+			}
+		}
+	}
+
+	.new-deal {
+		.canvas-holder {
+			canvas {
+				height: 200px;
+				@include respond-below(lg) {
+					height: 200px;
+				}
+				@include respond-below(sm) {
+					height: 300px;
+				}
+			}
+		}
+	}
+	
+	.reminder-item-wrapper {
+		margin-bottom: 10px;
+		
+		&:last-child {
+			margin-bottom: 0px;
+		}
+	}
+
+	.reminder-item {
+		.reminder-item-row {
+			.reminder-item-details {
+				padding-bottom: 0px;
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+{% if form is defined %}
+    {% if form.vars.attr.autocomplete == 'on' %}
+        <section class="widget">
+            {{ form_label(form) }}
+            <select
+                name="{{ form.vars.full_name }}"
+                {% if form.vars.attr['data-url'] is defined %}data-url="{{ path(form.vars.attr['data-url']) }}"{% endif %}
+                id="{{ form.vars.id }}"
+                class="form-control"
+            >
+                {% if form.vars.value %}
+                    <option selected="selected" value="{{ form.vars.value }}">{{ form.vars.value }}</option>
+                {% endif %}
+            </select>
+        </section>
+    {% else %}
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+    {% endif %}
+{% endif %}

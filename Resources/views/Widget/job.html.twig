@@ -1,0 +1,15 @@
+{% if form is defined %}
+    <section class="widget">
+        <header>{{ form.vars.label }}</header>
+        <select
+            name="{{ form.vars.full_name }}"
+            {% if form.vars.attr['data-url'] is defined %}data-url="{{ path(form.vars.attr['data-url']) }}"{% endif %}
+            id="{{ form.vars.id }}"
+            class="form-control"
+        >
+            {% if form.vars.value %}
+                <option selected="selected" value="{{ form.vars.value }}">{{ form.vars.value }}</option>
+            {% endif %}
+        </select>
+    </section>
+{% endif %}

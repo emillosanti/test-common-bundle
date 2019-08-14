@@ -1,0 +1,28 @@
+{% extends "@SAMCommon/Layout/_one_column_layout.html.twig" %}
+
+{% block meta_title %}Paramètres | {{ site_name }}{% endblock %}
+{% block page_title %}Paramètres{% endblock %}
+
+{% block page_content %}
+    {{ form_start(form) }}
+    <div class="row panel-reset">
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>Gérer mes notifications</h4>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                {{ form_row(form.notifiedByEmail) }}
+                            </div>
+                            <button type="submit" class="btn-lg btn btn-confirm">Valider</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

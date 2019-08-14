@@ -1,0 +1,43 @@
+{% extends "@SAMCommon/Layout/_one_column_layout.html.twig" %}
+
+{% block meta_title %}Statistiques | {{ site_name }}{% endblock %}
+
+{% block page_content %}
+    <div class="metrics-page-container">
+        <h1>Statistiques</h1>
+        <ul class="result-tab-selector">
+            <li{% if "deal_flow_metrics" == app.request.attributes.get('_route') %} class="active"{% endif %}>
+                <a href="{{ path('deal_flow_metrics') }}">Deal flow</a>
+            </li>
+            {% if settings('bundle.prospect', 'global.enable') %}
+            <li{% if "metrics_prospections" == app.request.attributes.get('_route') %} class="active"{% endif %}>
+                <a href="{{ path('metrics_prospections') }}">Prospections</a>
+            </li>
+            {% endif %}
+            {% if settings('bundle.investor', 'global.enable') %}
+            <li{% if "metrics_investors" == app.request.attributes.get('_route') %} class="active"{% endif %}>
+                <a href="{{ path('metrics_investors') }}">LPs</a>
+            </li>
+            {% endif %}
+            {% if settings('bundle.fundraising', 'global.enable') %}
+            <li{% if "metrics_fund_raising" == app.request.attributes.get('_route') %} class="active"{% endif %}>
+                <a href="{{ path('metrics_fund_raising') }}">Levée de fonds</a>
+            </li>
+            {% endif %}
+        </ul>
+
+        <div class="search-container">
+            <div class="search-form">
+                {% block search_form %}{% endblock %}
+            </div>
+        </div>
+        <div class="loading">
+            <section class="loader">
+                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+            </section>
+        </div>
+        <div class="metrics-wrapper">
+            {% block metrics_content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

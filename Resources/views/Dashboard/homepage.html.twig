@@ -1,0 +1,69 @@
+{% extends "@SAMCommon/Layout/_one_column_layout.html.twig" %}
+
+{% block meta_title %}Bienvenue {{ app.user.fullname }} | {{ site_name }}{% endblock %}
+{% block page_title %}Bienvenue {{ app.user.fullname }}{% endblock %}
+
+{% block page_content %}
+    <div class="dashboard-container">
+        <div class="row panel-reset row-eq-height">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                {{ render_esi(controller('SAMDealFlowBundle:Dashboard:tilesAnalytics')) }}
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                {{ render_esi(controller('SAMAddressBookBundle:Dashboard:tilesAnalytics')) }}
+            </div>
+            {% if settings('bundle.prospect', 'global.enable') and is_granted('ROLE_PROSPECT_USER') %}
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                {{ render_esi(controller('SAMProspectBundle:Dashboard:tilesAnalytics')) }}
+            </div>
+            {% endif %}
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                {{ render_esi(controller('SAMInvestorBundle:Dashboard:tilesAnalytics')) }}
+            </div>
+        </div>
+
+        <div class="row panel-reset row-eq-height">
+            <div class="col-xs-12 col-lg-4 col-sm-6">
+                {{ render_esi(controller('SAMAddressBookBundle:Dashboard:myReminders')) }}
+            </div>
+            <div class="col-xs-12 col-lg-4 col-sm-6">
+                {{ render_esi(controller('SAMDealFlowBundle:Dashboard:funnel')) }}
+            </div>
+            <div class="col-xs-12 col-lg-4 col-sm-6">
+                {{ render_esi(controller('SAMDealFlowBundle:Dashboard:new')) }}
+            </div>
+            <div class="col-xs-12 col-lg-4 col-sm-6">
+                {{ render_esi(controller('SAMDealFlowBundle:Dashboard:dealsByUsers')) }}
+            </div>
+            {% if settings('bundle.prospect', 'global.enable') and is_granted('ROLE_PROSPECT_USER') %}
+            <div class="col-xs-12 col-lg-4 col-sm-6">
+                {{ render_esi(controller('SAMProspectBundle:Dashboard:new')) }}
+            </div>
+            <div class="col-xs-12 col-lg-4 col-sm-6">
+                {{ render_esi(controller('SAMProspectBundle:Dashboard:prospectsByUsers')) }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="row panel-reset row-eq-height">
+            <div class="col-xs-12 col-sm-6">
+                <div class="panel tiles">
+                    <div class="panel-heading">
+                        <h4>Actualités</h4>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="panel-body">
+                                {{ render_esi(controller('SAMCommonBundle:Dashboard:news')) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                {{ render_esi(controller('SAMAddressBookBundle:Dashboard:lastContactMerged')) }}
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

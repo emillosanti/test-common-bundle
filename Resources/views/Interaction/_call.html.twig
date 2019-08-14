@@ -1,0 +1,31 @@
+<div class="col-sm-6 col-xs-12 interaction">
+    <div class="card">
+        <div class="card-content">
+            {% if is_granted(constant('SAM\\CommonBundle\\Security\\InteractionVoter::REMOVE'), interaction) %}
+                {# @TODO security vulnarability #}
+                <a href="{{ path('interaction_call_remove', { entity: entity, entityId: entityId, id: interaction.id }) }}" class="interaction-remove">
+                    <i class="icon-cross"></i>
+                </a>
+            {% endif %}
+            {% if is_granted(constant('SAM\\CommonBundle\\Security\\InteractionVoter::EDIT'), interaction) %}
+                <a data-type="phone" href="{{ path('interaction_call_update', {entity: entity, entityId: entityId, id: interaction.id}) }}" class="interaction-edit">
+                    <i class="icon-pen" aria-hidden="true"></i>
+                </a>
+            {% endif %}
+
+            <div class="interaction-head">
+                <i class="icon-phone"></i>
+                {{ 'title.interactions.entry.phone'|trans({'%result%': interaction.resultAsString}, 'SAMCommonBundle')|raw }}
+            </div>
+
+            <div class="interaction-content">
+                {{ interaction.content|nl2br }}
+            </div>
+
+            <div class="interaction-footer">
+                <img src="{{ interaction.user|picture({'imagineFilter': 'user_contact_thumb_sm'}) }}" alt="{{ interaction.user.fullName }}" class="round xs" />
+                {{ interaction.user.fullName }} a passé un appel le {{ interaction.eventDate|localizeddate('long', 'none') }}
+            </div>
+        </div>
+    </div>
+</div>

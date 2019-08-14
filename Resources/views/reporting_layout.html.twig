@@ -1,0 +1,68 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/reporting.css') }}">
+{% endblock %}
+
+{% set homepageRoute = homepage_route is defined ? homepage_route : 'contact_book' %}
+
+{% block body %}
+    <div class="body">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header hidden-sm hidden-xs">
+                    {% include "@SAMCommon/Layout/_brand.html.twig" with { white: true, link: 'https://www.eiffel-ig.com/' } %}
+                </div>
+                
+                <div class="navbar-infos">
+                    <div class="company-logo">
+                        {% block company_logo %}{% endblock %}
+                    </div>
+                    
+                    {% block steps_and_infos %}
+                        <button class="btn styled btn-primary btn-xs btn-steps-xs">Étape {{ block('currentStep') }} / 2</button>
+
+                        <div class="navbar-info-container">
+                            <div class="title">
+                                Indiquez ci-après vos informations financières 
+                            </div>
+                            <div class="subtitle">
+                                <i class="icon-lock"></i> Espace sécurisé
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid main-container">
+            {% block main_container %}
+                {% block main_container_start %}{% endblock %}
+                    <div class="page-content {% block page_content_css_class %}{% endblock %}">
+                        {% block flashs %}
+                            {% include "@SAMCommon/flash-messages.hml.twig" %}
+                        {% endblock %}
+                        {% block page_content %}{% endblock %}
+                    </div>
+                {% block main_container_end %}{% endblock %}
+                <div class="mobile-panel" id="mobile-search-panel">
+                    {% block search_form_mobile %}{% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="side-panel-overlay"></div>
+    <div class="side-panel-container {% block side_panel_toggle %}{% endblock %}">
+        <div class="side-panel-content">{% block side_panel_wrapper %}{% endblock %}</div>
+        {% include "@SAMCommon/loader.html.twig" %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/vendor.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
+{% endblock %}

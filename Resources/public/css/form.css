@@ -1,0 +1,59 @@
+input[type="checkbox"].sam-checkbox,
+input[type="radio"].sam-radio{
+    opacity: 0;
+    z-index: -1;
+}
+
+.checkbox-wrapper{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #2196F3;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+}
+
+.checkbox-wrapper.checked:before{
+    font-family:'FontAwesome';
+    content: "\f00c";
+    font-size: 11px;
+    color: #2196F3;
+    text-align: center;
+    position: relative;
+    bottom: 8px;
+    vertical-align: middle;
+}
+
+.radio-wrapper{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-radius: 13px;
+    border: 1px solid #2196F3;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}
+
+.radio-wrapper.checked,
+.radio-wrapper:hover{
+    width: 16px;
+    height: 16px;
+    text-align: center;
+}
+
+.radio-wrapper.checked:before{
+    content: " ";
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background-color: #2196F3;
+    display: inline-block;
+    margin-bottom: 7px;
+}

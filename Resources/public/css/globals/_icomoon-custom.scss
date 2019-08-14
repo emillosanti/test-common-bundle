@@ -1,0 +1,86 @@
+@import "variables";
+
+// @font-face {
+//   font-family: 'icomoon';
+//   src:  url('../../fonts/icomoon/icomoon.eot?9k1gcr');
+//   src:  url('../../fonts/icomoon/icomoon.eot?9k1gcr#iefix') format('embedded-opentype'),
+//   url('../../fonts/icomoon/icomoon.ttf?9k1gcr') format('truetype'),
+//   url('../../fonts/icomoon/icomoon.woff?9k1gcr') format('woff'),
+//   url('../../fonts/icomoon/icomoon.svg?9k1gcr#icomoon') format('svg');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+[class^="icon-"], [class*=" icon-"] {
+  font-size: 22px;
+  vertical-align: middle;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-alarm-clock {
+  font-size: 22px;
+}
+.icon-ban {
+  color: white;
+  font-size: 20px;
+}
+.icon-bell {
+  color: $text-color-lighter;
+  &.full {
+    color: $main-color;
+    &:after {
+      color: $second-color;
+      content: "\F111";
+      font-family: FontAwesome;
+      font-size: 7px;
+      position: absolute;
+      right: 3px;
+      top: 3px;
+      border: 1px solid white;
+      border-radius: 100%;
+    }
+  }
+}
+.icon-building {
+  font-size: 17px;
+}
+.icon-building-alt {
+  font-size: 60px;
+}
+.icon-cross {
+  font-size: 10px;
+  font-weight: 600;
+}
+.icon-file-alt {
+  font-size: 60px;
+}
+.icon-link {
+  font-size: 15px;
+}
+.icon-paperclip {
+  font-size: 32px;
+}
+.icon-pen {
+  font-size: 20px;
+
+  &.blue {
+    color: $main-color;
+  }
+}
+.icon-location {
+  font-size: 18px;
+}
+.icon-search {
+  color: $main-color;
+}
+.icon-user-add {
+  color: white;
+  font-size: 20px;
+}
+.icon-user-import {
+  color: white;
+  font-size: 20px;
+}

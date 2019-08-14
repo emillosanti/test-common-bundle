@@ -1,0 +1,22 @@
+{% if form is defined %}
+    {% set class='' %}
+    {% if form.vars.attr.class is defined %}
+    {% set class = ' ' ~ form.vars.attr.class %}
+    {% endif %}
+    <section class="widget">
+        {{ form_label(form) }}
+        <div class="slider-range-wrapper{{ class }}">
+            <div class="slider-range" data-step="1" data-min="{{ form.min.vars.value }}" data-default-min="{{ form.defaultMin.vars.value }}" data-max="{{ form.max.vars.value }}" data-default-max="{{ form.defaultMax.vars.value }}"></div>
+            <div class="slider-range-legend">
+                <span class="min" style="left:{{ (form.min.vars.value * 100) / form.defaultMax.vars.value }}%">{{ form.min.vars.value }}</span>
+                <span class="max" style="left:{{ (form.max.vars.value * 100) / form.defaultMax.vars.value }}%">{{ form.max.vars.value|localizednumber() }}{% if addInfinity is defined %}+{% endif %}</span>
+            </div>
+            <div class="slider-min-wrapper">
+                {{ form_widget(form.min) }}
+            </div>
+            <div class="slider-max-wrapper">
+                {{ form_widget(form.max) }}
+            </div>
+        </div>
+    </section>
+{% endif %}

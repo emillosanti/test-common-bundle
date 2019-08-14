@@ -1,0 +1,24 @@
+<section class="news-container">
+	{% for article in news %}
+		<article>
+			<a href="{{ article.link }}" target="_blank">
+				<div class="media">
+			  		{% if article.medias and article.medias|length %}
+						<div class="media-left">
+						    <img src="{{ (article.medias|first).url }}" class="media-object" />
+					  	</div>
+				  	{% elseif article.logo %}
+				  		<div class="media-left">
+						    <img src="{{ article.logo }}" class="media-object" />
+					  	</div>
+					{% endif %}
+				  	<div class="media-body">
+				    	<h4 class="media-heading">{% if article.rawTitle %}{{ article.title|raw }}{% else %}{{ article.title }}{% endif %}</h4>
+				    	<div><small>Le {{ article.date|localizeddate('short', 'none') }} par {{ article.feedName }}</small></div>
+				    	<p>{% if article.rawDescription %}{{ article.description|raw }}{% else %}{{ article.description }}{% endif %}</p>
+				  	</div>
+				</div>
+			</a>
+		</article>
+	{% endfor %}
+</section>

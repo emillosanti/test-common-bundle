@@ -1,0 +1,108 @@
+{% extends "@SAMCommon/standard_layout.html.twig" %}
+
+{% block main_container_start %}
+    {% if searchForm is defined %}
+        {{ form_start(searchForm, {attr:{class:'contact-book-search'}}) }}
+    {% endif %}
+{% endblock %}
+
+{% block main_container_end %}
+    {% if searchForm is defined %}
+        {{ form_end(searchForm, {'render_rest': false}) }}
+    {% endif %}
+{% endblock %}
+
+{% block main_action_buttons %}{% include "@SAMAddressBook/Global/main_action_button.html.twig" %}{% endblock %}
+
+{% block search_block %}
+    <div class="search-form">
+        {% if searchForm is defined %}
+            <div class="search-main-container clearfix">
+                {{ form_errors(searchForm) }}
+                <div class="row">
+                    {% if searchForm.query is defined and searchForm.query.vars.attr.autocomplete == 'on' %}
+                        <div class="col-md-6 search-item search-query">
+                            <div class="search-form-wrapper query_autocomplete_wrapper">
+                                {% include "@SAMCommon/Search/form.html.twig" with {form: searchForm} %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-6 search-item search-query">
+                            <div class="search-form-wrapper">
+                                {% include "@SAMCommon/Search/form.html.twig" with {form: searchForm} %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if searchForm.sector is defined %}
+                        <div class="col-md-2 search-item search-sector">
+                            {% include "@SAMCommon/Widget/widget.html.twig" with {form: searchForm.sector} %}
+                        </div>
+                    {% endif %}
+                    {% if searchUser is defined %}
+                        <div class="col-md-2 search-item search-user">
+                            {{ form_widget(searchUser) }}
+                        </div>
+                    {% endif %}
+                    {% if searchContactMerged is defined %}
+                        <div class="col-md-2 search-item">
+                            {{ form_widget(searchContactMerged) }}
+                        </div>
+                    {% endif %}
+                    {% if searchForm.meansOfContact is defined %}
+                        <div class="col-md-2 search-item">
+                            {{ form_label(searchForm.meansOfContact) }}
+                            {{ form_widget(searchForm.meansOfContact) }}
+                        </div>
+                    {% endif %}
+                    {% block extraMainSearchComponent %}{% endblock %}
+                    <div class="col-md-2 hidden-sm hidden-xs">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-search" aria-hidden="true"></i> Rechercher
+                        </button>
+                        {% if showResetFiltersButton is defined %}
+                           <a href="{{ path('list_unmerged_contacts_filters_reset') }}" class="reset-filters-btn btn btn-info btn-sm {% if not showResetFiltersButton %}hide{% endif %}">Supprimer les filtres</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="search-collapse-button {% block searchCollapseButtonClasses%}{% endblock %}">
+                    <button class="btn" type="button" data-toggle="collapse" data-target="#search-advanced-collapse" aria-expanded="true" aria-controls="search-advanced-collapse">
+                        Recherche avancée
+                        <span class="arrow">
+                            <i class="fa fa-angle-down"></i>
+                        </span>
+                    </button>
+                    {% if contacts is defined %}
+                        <small id="contact-results-count">
+                            {% include "@SAMAddressBook/Contact/_count_items.html.twig" with {count: contacts.getTotalItemCount} %}
+                        </small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="search-advanced-container collapse" id="search-advanced-collapse">
+                <div class="row">
+                    {% if searchForm.categories is defined %}
+                        <div class="col-md-8 search-categories">
+                            {% include "@SAMCommon/Widget/widget.html.twig" with { form: searchForm.categories } %}
+                        </div>
+                    {% endif %}
+                    {% if searchForm.job is defined %}
+                        <div class="col-md-2 search-job job_autocomplete_wrapper">
+                            {% include "@SAMCommon/Widget/job.html.twig" with { form: searchForm.job } %}
+                        </div>
+                    {% endif %}
+                    {% if searchForm.tags is defined %}
+                        {% include "@SAMCommon/Widget/widget.html.twig" with {form: searchForm.tags, widgetClass : 'hidden'} %}
+                    {% endif %}
+                    {% block extraAdvancedSearchComponentFirstRow %}{% endblock %}
+                </div>
+                {% block extraAdvancedSearchComponent %}{% endblock %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block search_form_mobile %}
+    {% if searchFormMobile is defined %}
+        {% include "@SAMCommon/Search/form_mobile.html.twig" with {form: searchFormMobile} %}
+    {% endif %}
+{% endblock %}

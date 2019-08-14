@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="company.404">
+                <source>company.404</source>
+                <target>Je ne trouve pas la société</target>
+            </trans-unit>
+            <trans-unit id="company.create">
+                <source>company.create</source>
+                <target>Créer la société</target>
+            </trans-unit>
+            <trans-unit id="company.info.header">
+                <source>company.info.header</source>
+                <target>Informations société</target>
+            </trans-unit>
+            <trans-unit id="header.info.general">
+                <source>header.info.general</source>
+                <target>Informations générales</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>save</source>
+                <target>Sauvegarder</target>
+            </trans-unit>
+            <trans-unit id="button.submit">
+                <source>button.submit</source>
+                <target>Valider</target>
+            </trans-unit>
+            <trans-unit id="form.company.label">
+                <source>form.company.label</source>
+                <target>Société</target>
+            </trans-unit>
+            <trans-unit id="form.company.placeholder">
+                <source>form.company.placeholder</source>
+                <target>Recherche une société</target>
+            </trans-unit>
+            <trans-unit id="sourcing">
+                <source>sourcing</source>
+                <target>Sourcing</target>
+            </trans-unit>
+            <trans-unit id="contact.404">
+                <source>contact.404</source>
+                <target>Je ne trouve pas la personne</target>
+            </trans-unit>
+            <trans-unit id="contact.create">
+                <source>contact.create</source>
+                <target>Créer la personne</target>
+            </trans-unit>
+            <trans-unit id="middleman">
+                <source>middleman</source>
+                <target>Intermédiaire / leveur</target>
+            </trans-unit>
+            <trans-unit id="team">
+                <source>team</source>
+                <target>Équipe</target>
+            </trans-unit>
+            <trans-unit id="form.contact.label">
+                <source>form.contact.label</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="form.contact.placeholder">
+                <source>form.contact.placeholder</source>
+                <target>Rechercher un contact</target>
+            </trans-unit>
+            <trans-unit id="form.users.placeholder">
+                <source>form.users.placeholder</source>
+                <target>Rechercher un utilisateur</target>
+            </trans-unit>
+            <trans-unit id="form.users.label">
+                <source>form.users.label</source>
+                <target>Equipe</target>
+            </trans-unit>
+            <trans-unit id="text.search.companies">
+                <source>text.search.companies</source>
+                <target>Entreprises</target>
+            </trans-unit>
+            <trans-unit id="text.search.contacts">
+                <source>text.search.contacts</source>
+                <target>Contacts</target>
+            </trans-unit>
+            <trans-unit id="text.search.deals">
+                <source>text.search.deals</source>
+                <target>Deals</target>
+            </trans-unit>
+            <trans-unit id="text.search.lps">
+                <source>text.search.lps</source>
+                <target>LPs</target>
+            </trans-unit>
+            <trans-unit id="category">
+                <source>category</source>
+                <target>Catégorie</target>
+            </trans-unit>
+            <trans-unit id="form.category.placeholder">
+                <source>form.category.placeholder</source>
+                <target>Veuillez choisir une catégorie</target>
+            </trans-unit>
+            <trans-unit id="amount">
+                <source>amount</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.new.note">
+                <source>title.interactions.new.note</source>
+                <target>Note</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.new.mail">
+                <source>title.interactions.new.mail</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.new.phone">
+                <source>title.interactions.new.phone</source>
+                <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.new.letter">
+                <source>title.interactions.new.letter</source>
+                <target>Courrier</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.new.appointment">
+                <source>title.interactions.new.appointment</source>
+                <target>RDV</target>
+            </trans-unit>
+            <trans-unit id="button.interactions.new">
+                <source>button.interactions.new</source>
+                <target>rédiger une note</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.notes">
+                <source>title.interactions.notes</source>
+                <target>Notes</target>
+            </trans-unit>
+            <trans-unit id="text.interactions.none">
+                <source>text.interactions.none</source>
+                <target>Aucune note pour le moment</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.entry.note">
+                <source>title.interactions.entry.note</source>
+                <target>Note</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.entry.phone">
+                <source>title.interactions.entry.phone</source>
+                <target>Téléphone <![CDATA[<span>%result%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="title.interactions.entry.mail">
+                <source>title.interactions.entry.mail</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="title.interactions.entry.appointment">
+                <source>title.interactions.entry.appointment</source>
+                <target>Rendez-vous le <![CDATA[<span>%eventDate%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="title.interactions.entry.letter">
+                <source>title.interactions.entry.letter</source>
+                <target>Courrier</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,78 @@
+{% set currentRoute = app.request.get('_route') %}
+{% set pathInfo = app.request.pathInfo %}
+<ul class="nav navbar-nav">
+    {% if settings('bundle.prospect', 'global.enable') and is_granted('ROLE_PROSPECT_USER') %}
+    <li>
+        <a{% if pathInfo starts with '/prospections/' %} class="active"{% endif %} href="{{ path('prospect_list') }}"><i class="sam-ico icon-search-user"></i> <span>Prospections</span></a>
+    </li>
+    {% endif %}
+    {% if isFinderEnable() %}
+    <li>
+        <a{% if pathInfo starts with '/ia-connection/' %} class="active"{% endif %} href="{{ path('finder_index') }}"><i class="sam-ico icon-artificial-intelligence"></i> <span>{{ getFinderName() }}</span></a>
+    </li>
+    {% endif %}
+    {% if is_granted('ROLE_DEALFLOW_USER') %}
+    <li>
+        <a{% if pathInfo starts with '/deal-flow/' %} class="active"{% endif %} href="{{ path('deal_flow_list') }}"><i class="sam-ico icon-dealflow"></i> <span>Deal flow</span></a>
+    </li>
+    {% endif %}
+    {% if is_granted('ROLE_CONTACTBOOK_USER') %}
+    <li>
+        <a{% if (pathInfo starts with '/contacts/' or pathInfo starts with '/companies/') and currentRoute != 'list_unmerged_contacts' and currentRoute != 'list_reminders' %} class="active"{% endif %} href="{{ path('contact_book') }}"><i class="sam-ico icon-user"></i> <span>Carnet d'adresses</span></a>
+    </li>
+    {% endif %}
+    {% if settings('bundle.investor', 'global.enable') and is_granted('ROLE_INVESTOR_USER') %}
+    <li>
+        <a{% if pathInfo starts with '/lps/' %} class="active"{% endif %} href="{{ path('investor_list') }}"><i class="sam-ico icon-briefecase"></i> <span>LPs</span></a>
+    </li>
+    {% endif %}
+    {% if settings('bundle.fundraising', 'global.enable') and is_granted('ROLE_FUNDRAISING_USER') %}
+    <li>
+        <a{% if pathInfo starts with '/levee-de-fonds/' %} class="active"{% endif %} href="{{ path('fund_raising_list') }}"><i class="sam-ico icon-hand-usd"></i> <span>Levée de fonds</span></a>
+    </li>
+    {% endif %}
+    {% if is_granted('ROLE_ANALYTICS_USER') %}
+    <li>
+        <a{% if pathInfo starts with '/statistiques/' %} class="active"{% endif %} href="{{ path('deal_flow_metrics') }}"><i class="sam-ico icon-statistics"></i> <span>Statistiques</span></a>
+    </li>
+    {% endif %}
+    {% if is_granted('ROLE_CONTACTBOOK_MODERATOR') or is_granted('ROLE_CONTACTBOOK_ADMIN') %}
+        <li>
+            <a{% if 'list_unmerged_contacts' == currentRoute %} class="active"{% endif %} href="{{ path('list_unmerged_contacts') }}"><i class="sam-ico icon-file-user-check"></i> <span>Modération</span></a>
+        </li>
+    {% endif %}
+</ul>
+
+<div class="user-profile">
+    <div class="dropdown">
+        {{ render(controller('SAMAddressBookBundle:Reminder:reminder')) }}
+
+        <button href="{{ path('edit_user_account') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="user-preview">
+                <img src="{{ app.user|picture({ 'imagineFilter': 'user_contact_thumb_sm'}) }}" alt="{{ app.user.fullName }}" />
+            </span>
+            <div class="wrapper hidden-sm hidden-xs">
+                <b>{{ app.user.firstName }}</b>
+                {% if app.user.job %}<span>{{ app.user.job }}</span>{% endif %}
+            </div>
+        </button>
+
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{{ path('contact_merged_requests') }}">Mes demandes</a>
+            </li>
+            <li>
+                <a href="{{ path('edit_user_account') }}">Mon compte</a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{ path('sonata_admin_dashboard') }}">Espace administrateur</a>
+                </li>
+            {% endif %}
+            <li role="separator" class="divider"></li>
+            <li>
+                <a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+            </li>
+        </ul>
+    </div>
+</div>

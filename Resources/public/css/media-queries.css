@@ -1,0 +1,221 @@
+@media (min-width: 769px) and (max-width: 1350px) {
+    .deals-list > li { width: 48%; }
+    .deals-list > li:nth-child(3n + 1) { margin-left: 20px; }
+    .deals-list > li:first-child, .deals-list > li:nth-child(2n + 1) { margin-left: 0; }
+    .deal-steps ul li:first-child { margin-left: 100px;}
+    .deal-steps ul li a { padding-right: 20px; }
+}
+@media (max-width: 990px) {
+    .deals-list > li { width: 100%; margin-left: 0 }
+    .show-header .logo { height: 120px; }
+    .save-btn-wrapper { margin-right: 0; }
+}
+
+@media (max-width: 768px) {
+    .body-error .error-body {
+        margin-top: 40px;
+    }
+    .body-error .error-body img {
+        display: none;
+    }
+    .company-save-btn-wrapper {
+        margin: 20px 40px 0;
+    }
+    .deal-form-wrapper .form-vertical-separator {
+        display: none;
+    }
+
+}
+@media (max-width: 720px) {
+    .left-col .secondary-navigation,
+    .right-col .top-navigation,
+    .right-col .search-form {
+        display: none;
+    }
+
+    .left-col {
+        height: auto;
+        width: 100%;
+        z-index: 20;
+    }
+
+    .left-col .brand {
+        width: 100%;
+        height: 60px;
+        padding: 0;
+        z-index: 36;
+    }
+
+    .left-col .mobile-nav-button {
+        display: block;
+    }
+
+    .left-col .brand .logo {
+        margin: 10px 20px 0 0;
+        float: right;
+    }
+
+    .left-col .page-heading {
+        width: 100%;
+        z-index: 20;
+        position: relative;
+    }
+
+    .left-col .page-heading .mobile-search-button {
+        display: block;
+    }
+
+    .right-col {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .contact-item .users-pictures-list-container, .contact-item .contact-tags {
+        margin-top: 10px;
+    }
+
+    .contact-item .btn.open-side-panel {
+        margin-top: 10px;
+    }
+
+    .side-panel-container {
+        width: 100%
+    }
+
+    .side-panel-body > section {
+        padding: 20px;
+    }
+
+    .side-panel-body .contact-details header {
+        overflow: hidden;
+    }
+
+    .side-panel-body .contact-details header .heading-cover {
+        height: 33%;
+        background-size: cover;
+    }
+
+    .side-panel-body .contact-details header .contact-heading {
+        margin: 0 20px;
+        display: block;
+        width: auto;
+        height: auto;
+    }
+
+    .side-panel-body .contact-details header .contact-heading .contact-picture {
+        width: 30%;
+        height: auto;
+    }
+
+    .side-panel-body .contact-details header .contact-heading .contact-picture img {
+        width: 100%;
+        height: auto;
+    }
+
+    .side-panel-body .contact-details header .contact-heading .contact-metas {
+        width: 70%;
+    }
+
+    .side-panel-body .contact-details header .contact-metas {
+        height: auto;
+    }
+
+    .side-panel-body .contact-details header .contact-metas .contact-heading-controls {
+        position: relative;
+        margin-top: 20px;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+    }
+
+    .side-panel-body .contact-details header .contact-metas .contact-heading-controls .btn {
+        font-size: 12px;
+    }
+
+    .side-panel-body .contact-details header .contact-metas .contact-social {
+        margin-top: 10px;
+    }
+
+    .side-panel-body .contact-details header .contact-metas .contact-social ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .side-panel-body .contact-details .contact-infos .panel-heading {
+        padding-bottom: 0;
+    }
+
+    .side-panel-body .contact-details .contact-infos .panel-heading .col-sm-4 {
+        text-align: left;
+    }
+
+    .side-panel-body .contact-details .contact-infos .panel-heading .panel-title {
+        border-bottom: 1px solid #eee;
+        margin-bottom: 10px;
+    }
+    .side-panel-body .contact-details .contact-infos .panel-heading hr {
+        display: none;
+    }
+
+    .side-panel-body .contact-details .contact-body {
+        padding: 0 20px;
+    }
+
+    .side-panel-container .edge-block {
+        display: none;
+    }
+
+    .unmerged-contact-panel ul.contact-phones li {
+        width: 100%;
+    }
+
+    .unmerged-contact-panel .btn {
+        margin-top: 10px;
+    }
+
+    .merge-contact-form {
+        min-width: 720px;
+    }
+
+    .notifications-list .notification-message {
+        margin-top: 10px;
+    }
+
+    .company-contacts {
+        display: block;
+    }
+
+    .company-contacts li {
+        display: block;
+        width: 100%;
+    }
+
+    .company-contacts li:nth-child(2n) {
+        margin-left: 0;
+    }
+
+    .company-show-header {
+        margin-top: 60px;
+    }
+
+    .company-show-header .company-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .company-show-header .company-logo img {
+        position: static;
+        width: 80px;
+        height: 80px;
+        left: auto;
+        top: auto;
+    }
+
+    .company-show-header .company-name  {
+        vertical-align: top;
+    }
+
+    .company-show-header .company-name .page-title {
+        margin-top: 0;
+    }
+}

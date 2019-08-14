@@ -1,0 +1,11 @@
+{% if form is defined %}
+    <section class="widget{{ widgetClass is defined ? ' ' ~ widgetClass }}">
+        {# <label class="control-label">{{ form.vars.label }}</label> #}
+        {{ form_label(form)}}
+        {% if facets is defined %}
+            {{ form_widget(form, {'facets': facets}) }}
+        {% else %}
+            {{ form_widget(form) }}
+        {% endif %}
+    </section>
+{% endif %}

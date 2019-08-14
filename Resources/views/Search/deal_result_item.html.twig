@@ -1,0 +1,11 @@
+<div class="select2-custom-element-large-container">
+	<a class="select2-custom-element-large" href="{{ path('show_deal_flow', {dealFlow: deal.id}) }}">
+		<div class="picture">
+			<img src="{{ deal.company|picture({'fieldName': 'logoFile', 'default': 'company.png', 'imagineFilter': 'company_thumb_sm'}) }}" alt="{{ deal.company.name }}" class="company-thumb" />
+		</div>
+		<div class="details">
+			<div class="element-title">{{ deal.company.name }} <small>{{ deal.projectName }} <i class="fa fa-star"></i> {{ deal.probability * deal.interest }}</small></div> 
+			<span class="element-text">{{ deal.company.description|truncate(60) }}</span>
+		</div>
+	</a>
+</div>

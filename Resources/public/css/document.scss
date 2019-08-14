@@ -1,0 +1,32 @@
+.documents-wrapper {
+  #prototype {
+    display: none;
+  }
+
+  .tab-pane {
+    padding: 30px 10px 20px 10px !important;
+    min-height: 133px;
+
+    ul {
+      li {
+        padding-left: initial;
+        display: inline-block;
+        width: 49%;
+        margin-bottom: 30px;
+
+        &:before {
+          content: initial;
+        }
+        &.inactive {
+          color: $text-color-lighter;
+          background: initial;
+        }
+        .info-wrapper {
+          .info-wrapper-logo {
+            width: 60px;
+          }
+        }
+      }
+    }
+  }
+}

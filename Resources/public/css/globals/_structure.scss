@@ -1,0 +1,101 @@
+.show-header {
+  background: none;
+  padding: 0;
+  margin-bottom: 30px;
+
+  @include respond-below(sm) {
+    margin-bottom: 0px;
+  }
+
+  .logo {
+    width: 80px;
+    background: none;
+
+    &:hover a {
+      display: block;
+    }
+
+    img {
+      z-index: 10;
+      height: 80px;
+      width: 80px;
+      border: 1px solid $logo-border;
+      border-radius: 40px;
+      background-color: #FFFFFF;
+    }
+  }
+
+  .save-btn-wrapper {
+    margin: 15px 40px 0 0;
+    overflow: hidden;
+
+    button {
+      float: right;
+    }
+  }
+
+  .btn-wrapper {
+    text-align: right;
+    padding: 15px 0;
+
+    a, button {
+      margin-left: 15px;
+
+      @include respond-below(xs) {
+        margin: 0 0 8px 0;
+      }
+    }
+  }
+}
+
+.info-wrapper {
+  display: flex;
+  margin-left: 0;
+  .info-wrapper-logo {
+    background: none;
+    width: 80px;
+    &:hover a {
+      display: block;
+    }
+    img {
+      z-index: 10;
+      width: 100%;
+      border: 1px solid $logo-border;
+      border-radius: 40px;
+      background-color: #FFFFFF;
+    }
+  }
+  .info-wrapper-name {
+    padding-left: 20px;
+    h1, h2, h1 a, h2 a {
+      color: $main-color !important;
+      margin-bottom: 0 !important;
+      font-weight: 600;
+      text-transform: capitalize;
+      font-family: $main-fontfamily;
+      text-decoration: none !important;
+    }
+    h1, h1 a {
+      font-size: em(24) !important;
+      margin-top: 0px;
+    }
+    h2, h2 a {
+      font-size: em(17) !important;
+      margin-top: 0px;
+      margin-bottom: 5px !important;
+    }
+    p {
+      text-transform: none;
+      font-size: 11px;
+      line-height: 24px;
+      color: $text-color-lighter;
+      img {
+        display: inline;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

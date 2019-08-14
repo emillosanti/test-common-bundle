@@ -1,0 +1,18 @@
+<div class="side-panel-wrapper">
+	{% block side_panel_heading %}{% endblock %}
+
+	<div class="side-panel-body">
+	    {% block side_panel_body %}{% endblock %}
+	</div>
+
+	<div class="edge-block">
+	    <div class="panel-controls">
+	        <ul class="list-unstyled">
+	            <li>
+	                <a class="close-panel">X</a>
+	            </li>
+	        </ul>
+	    </div>
+	    {% block side_panel_controls %}{% endblock %}
+	</div>
+</div>

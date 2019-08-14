@@ -1,0 +1,12 @@
+<div class="select2-custom-element-large-container">
+	<a class="select2-custom-element-large" href="{{ path('edit_contact_import', {id: contact.id}) }}" data-open-side-panel="">
+		<div class="picture">
+			<img src="{{ contact|picture({'imagineFilter': 'user_contact_thumb_md'}) }}" alt="{{ contact.fullName }}" />
+		</div>
+		<div class="details">
+			<div class="element-title">{{ contact.fullname }}</div> 
+			<span class="element-text">{{ contact.job }}</span>
+			{% if contact.company %}<span class="element-text"><strong>{{ contact.company }}</strong></span>{% endif %}
+		</div>
+	</a>
+</div>

@@ -1,0 +1,51 @@
+$topbar-height: 70px;
+$topbar-bg: #fff;
+$topbar-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 4px 4px rgba(0, 0, 0, 0.05), 0 8px 8px rgba(0, 0, 0, 0.05);
+$topbar-toggle-bg: $main-color;
+
+.topbar {
+    position: relative;
+    top: 0;
+    margin: 0 -30px 30px;
+    height: $topbar-height;
+    background-color: $topbar-bg;
+    text-align: center;
+    box-shadow: $topbar-box-shadow;
+    z-index: 9999;
+
+    .toggle {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        width: 25px;
+        transform: translateY(-50%);
+        z-index: 1;
+
+        .icon-bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            border-radius: 2px;
+            background-color: $topbar-toggle-bg;
+
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .logo {
+        display: inline-block;
+        width: auto;
+        height: auto;
+        margin-top: 23px;
+        border-radius: 0;
+        background: none;
+        line-height: inherit;
+
+        img {
+            width: auto;
+        }
+    }
+}

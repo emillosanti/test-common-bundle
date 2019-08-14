@@ -1,0 +1,17 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block logo %}
+    {% spaceless %}
+        <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
+            {% if 'single_image' == sonata_admin.adminPool.getOption('title_mode') or 'both' == sonata_admin.adminPool.getOption('title_mode') %}
+                <img src="{{ asset(sonata_admin.adminPool.titlelogo) }}" alt="{{ sonata_admin.adminPool.title }}"  style="max-width: 330px;">
+            {% endif %}
+            {% if 'single_text' == sonata_admin.adminPool.getOption('title_mode') or 'both' == sonata_admin.adminPool.getOption('title_mode') %}
+                <span>{{ sonata_admin.adminPool.title }}</span>
+            {% endif %}
+        </a>
+    {% endspaceless %}
+{% endblock %}
+{% block side_bar_after_nav %}
+    <p class="text-center"><a href="{{ path('contact_book') }}">Retour sur le site</a></p>
+{% endblock %}

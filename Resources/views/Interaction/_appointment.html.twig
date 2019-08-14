@@ -1,0 +1,51 @@
+<div class="col-sm-6 col-xs-12 interaction">
+    <div class="card">
+        <div class="card-content">
+            {% if is_granted(constant('SAM\\CommonBundle\\Security\\InteractionVoter::REMOVE'), interaction) %}
+                <a href="{{ path('interaction_appointment_remove', { entity: entity, entityId: entityId, id: interaction.id }) }}" class="interaction-remove">
+                    <i class="icon-cross"></i>
+                </a>
+            {% endif %}
+            {% if is_granted(constant('SAM\\CommonBundle\\Security\\InteractionVoter::EDIT'), interaction) %}
+                <a data-type="appointment" href="{{ path('interaction_appointment_update', {entity: entity, entityId: entityId, id: interaction.id}) }}" class="interaction-edit">
+                    <i class="icon-pen" aria-hidden="true"></i>
+                </a>
+            {% endif %}
+
+            <div class="interaction-head">
+                <i class="icon-calendar"></i>
+                {{ 'title.interactions.entry.appointment'|trans({'%eventDate%': interaction.eventDate|localizeddate('long', 'none')}, 'SAMCommonBundle')|raw }}
+            </div>
+
+            <div class="interaction-content">
+                <p><strong>{{ interaction.subject }}</strong></p>
+                <p>{{ interaction.content|nl2br }}</p>
+                {% if interaction.contacts|length > 0 %}
+                <p><strong>Participants</strong></p>
+                <ul class="list-unstyled appointment-contacts-merged">
+                    {% for contact in interaction.contacts %}
+                        <li>
+                            <div class="contact-merged-preview">
+                                <div class="contact-picture">
+                                    <img src="{{ contact|picture({'imagineFilter': 'user_contact_thumb_sm'}) }}" alt="{{ contact.fullName }}" title="{{ contact.fullName }}">
+                                </div>
+                                <div class="contact-info">
+                                    <span class="contact-name">{{ contact.fullName }}</span>
+                                    {% if contact.job %}
+                                        <span class="contact-job">{{ contact.job }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="interaction-footer">
+                <img src="{{ interaction.user|picture({'imagineFilter': 'user_contact_thumb_sm'}) }}" alt="{{ interaction.user.fullName }}" class="round xs" />
+                {{ interaction.user.fullName }} a fait un rendez-vous le {{ interaction.eventDate|localizeddate('long', 'none') }}
+            </div>
+        </div>
+    </div>
+</div>

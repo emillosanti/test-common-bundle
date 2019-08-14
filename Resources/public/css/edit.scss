@@ -1,0 +1,116 @@
+@import "./globals/variables";
+@import "./globals/mixins";
+@import "./globals/media-queries";
+
+.edit-item-section {
+  .edit-form {
+    margin-top: 0px;
+  }
+  .panel {
+    background: none;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 10px !important;
+
+    &.panel-inline-block {
+      display: inline-block;
+      &:not(:first-child) {
+        margin-left: 30px;
+      }
+
+      .big-text {
+        display: block;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .panel-heading {
+      border: none;
+      padding: 0 0 8px;
+      h4 {
+        padding: 4px 0;
+        font-size: 17px;
+        font-weight: 400;
+        color: $main-color;
+        line-height: 20px;
+      }
+      hr {
+        display: none;
+      }
+      .panel-icon {
+        display: none;
+      }
+      .btn-success {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+
+    .panel-body {
+      border: $panel-border;
+      border-radius: 5px;
+      background-color: $panel-bg-white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      h5 {
+        font-size: 11px;
+        font-weight: 600;
+        margin-top: initial;
+      }
+
+      > p {
+        font-size: 14px;
+        font-family: $main-fontfamily;
+        font-weight: 400;
+        margin-bottom: 25px;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+      .panel-stats {
+        border: 1px solid $text-color-lightest;
+        @include sam-border-radius(3px);
+        text-align: center;
+        > div {
+          height: 110px;
+          padding: 21px 0;
+          border-bottom: 1px solid #E2E2E2;
+          &:nth-child(2n+1) {
+            border-right: 1px solid #E2E2E2;
+          }
+          &.no-border-bottom {
+            border-bottom: initial;
+          }
+        }
+        h5 {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .big-text {
+    color: $main-color;
+    font-family: $main-fontfamily;
+    font-size: 27px;
+    font-weight: 900;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .kpis-wrapper {
+    @include respond-below(sm) {
+      .panel-heading {
+        display: none;
+      }
+    }
+    .kpi-content {
+      margin-top: 36px;
+      @include respond-below(sm) {
+        margin-top: 0px;
+      }
+    }
+  }
+}

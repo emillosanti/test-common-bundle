@@ -1,0 +1,225 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $entities: '%sam_entities%'
+            $reminderDelays: '%interaction_reminder_delays%'
+
+    SAM\CommonBundle\:
+        resource: '../../*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../{Entity,Repository,Tests,Annotations,EventListener,Client}'
+
+    # controllers are imported separately to make sure they're public
+    # and have a tag that allows actions to type-hint services
+    SAM\CommonBundle\Controller\:
+       resource: '../../Controller'
+       public: true
+       tags: ['controller.service_arguments']
+
+    # EVENT LISTENERS
+    #SAM\CommonBundle\EventListener\ParamConverterListener:
+    #    arguments:
+    #        - '@sam_common.paramconverter.manager'
+    #        - true
+    #    tags:
+    #        - { name: kernel.event_subscriber }
+
+    SAM\CommonBundle\EventListener\InteractionListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    SAM\CommonBundle\EventListener\SoftDeleteListener:
+        tags:
+            - { name: doctrine.event_listener, event: preRemove, priority: 10 }
+
+    SAM\CommonBundle\EventListener\DoctrineMappingListener:
+        arguments:
+            - '%sam_entities%'
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    SAM\CommonBundle\EventListener\UserListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    SAM\CommonBundle\EventListener\AuthSuccessHandler:
+        tags:
+            - { name: kernel.event_subscriber }
+
+    SAM\CommonBundle\EventListener\SessionIdleHandler:
+        arguments: ["@session", "@security.token_storage", "@router", "%session_max_idle_time%"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    SAM\CommonBundle\EventListener\SearchIndexerSubscriber:
+        arguments:
+            - '%enable_algolia_search%'
+            - '@search.index_manager'
+        tags:
+            - { name: doctrine.event_subscriber }
+    
+    # CLIENTS
+    SAM\CommonBundle\Client\ApiCoreClient: '@eight_points_guzzle.client.api_core'
+
+    # MANAGERS
+    SAM\CommonBundle\Manager\MailManager:
+        calls:
+            - [setSender, ['%mailer_sender_email%']]
+
+    SAM\CommonBundle\Manager\PictureManager:
+        calls:
+            - [setVichUploaderHelper, ['@vich_uploader.templating.helper.uploader_helper']]
+            - [setImagineCacheManager, ['@liip_imagine.cache.manager']]
+            - [setParameters, [ '%aws_base_url%', '%contacts_files_dir%', '%companies_files_dir%' ]]
+
+    SAM\SearchBundle\Manager\SearchEngineManager:
+        class: SAM\SearchBundle\Manager\SearchEngineManager
+
+    sam_common.manager.entity_manager:
+        class: SAM\CommonBundle\Manager\EntityManager
+        arguments:
+            - '%sam_entities%'
+
+    SAM\CommonBundle\Manager\SearchHitManager:
+        class: SAM\CommonBundle\Manager\SearchHitManager
+        arguments:
+            - '%sam_entities%'
+
+    STS\Backoff\Backoff:
+        class: STS\Backoff\Backoff
+        calls:
+            - ['setStrategy', ['%backoff_default_strategy%']]
+            - ['setMaxAttempts', ['%backoff_default_max_attempts%']]
+
+    # REPOSITORIES
+    sam_common.repository_factory:
+        class: SAM\CommonBundle\Repository\RepositoryFactory
+        arguments:
+            - '%sam_entities%'
+
+    # ANNOTATIONS
+    # sam_common.paramconverter.manager:
+    #     class: SAM\CommonBundle\Annotations\SAMParamConverterManager
+    #     arguments:
+    #         - '@sam_common.paramconverter.doctrine'
+
+    # sam_common.paramconverter.doctrine:
+    #     class: SAM\CommonBundle\Annotations\SAMDoctrineParamConverter
+    #     arguments:
+    #         $entities: '%sam_entities%'
+
+    # FORM TYPES
+    sam_common.InteractionType:
+        class: SAM\CommonBundle\Form\Type\InteractionType
+        public: true
+        arguments: 
+            $reminderDelays: '%interaction_reminder_delays%'
+
+    sam_common.InteractionCallType:
+        class: SAM\CommonBundle\Form\Type\InteractionCallType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.InteractionAppointmentType:
+        class: SAM\CommonBundle\Form\Type\InteractionAppointmentType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.InteractionEmailType:
+        class: SAM\CommonBundle\Form\Type\InteractionEmailType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.InteractionLetterType:
+        class: SAM\CommonBundle\Form\Type\InteractionLetterType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.InteractionNoteType:
+        class: SAM\CommonBundle\Form\Type\InteractionNoteType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.UserCardChoiceType:
+        class: SAM\CommonBundle\Form\Type\UserCardChoiceType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.ContactMergedCardChoiceType:
+        class: SAM\CommonBundle\Form\Type\ContactMergedCardChoiceType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.MyAccountType:
+        class: SAM\CommonBundle\Form\Type\MyAccountType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.UserPictureChoiceType:
+        class: SAM\CommonBundle\Form\Type\UserPictureChoiceType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.UserFilterType:
+        class: SAM\CommonBundle\Form\Type\UserFilterType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.ContactMergedFilterType:
+        class: SAM\CommonBundle\Form\Type\ContactMergedFilterType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.SourcingType:
+        class: SAM\CommonBundle\Form\Type\SourcingType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    sam_common.SearchStepType:
+        class: SAM\CommonBundle\Form\Type\SearchStepType
+        public: true
+        arguments:
+            - '@doctrine'
+
+    sam_common.LegalEntityChooserType:
+        class: SAM\CommonBundle\Form\Type\LegalEntityChooserType
+        public: true
+        arguments:
+            $entities: '%sam_entities%'
+
+    # FORM EXTENSIONS
+    app.form.extension.model_transformer:
+        class: SAM\CommonBundle\Form\Extension\ModelTransformerExtension
+        public: true
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    #SERIALIZERS / NORMALIZERS
+    sam_common.legal_entity_normalizer:
+        class: SAM\CommonBundle\Serializer\LegalEntityNormalizer
+        tags:
+            - { name: serializer.normalizer }
+    sam_common.sourcing_normalizer:
+        class: SAM\CommonBundle\Serializer\SourcingNormalizer
+        tags:
+            - { name: serializer.normalizer }
+    sam_common.sourcing_category_normalizer:
+        class: SAM\CommonBundle\Serializer\SourcingCategoryNormalizer
+        tags:
+            - { name: serializer.normalizer }

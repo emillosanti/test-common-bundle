@@ -1,0 +1,10 @@
+@import "variables";
+
+h1 {
+  color: $main-color;
+  font-family: "Montserrat", "Acrom", sans-serif !important;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-transform: none;
+}

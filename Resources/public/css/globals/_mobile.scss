@@ -1,0 +1,22 @@
+// Fix iOS zoom when inputs are less than 16px
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select,
+  textarea,
+  input,
+  select.form-control,
+  textarea.form-control,
+  input.form-control {
+    font-size: 16px;
+    -webkit-transform: translateZ(0px);
+  }
+}
+@media (min-width: 768px) {
+  select,
+  textarea,
+  input,
+  select.form-control,
+  textarea.form-control,
+  input.form-control {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,22 @@
+<div class="select2-custom-element-large-container">
+	<a class="select2-custom-element-large" href="{{ path('investor_show', {investor: investorLegalEntity.investor.id}) }}#legal_entity_{{ investorLegalEntity.legalEntity.id }}">
+		<div class="picture">
+			{% if investorLegalEntity.investor.type == constant('SAM\\InvestorBundle\\Entity\\Investor::TYPE_LEGAL_PERSON') %}
+				<img src="{{ investorLegalEntity.investor.company|picture({'fieldName': 'logoFile', 'default': 'company.png', 'imagineFilter': 'company_thumb_sm'}) }}" alt="{{ investorLegalEntity.investor.company ? investorLegalEntity.investor.company.name : '' }}" class="company-thumb" />
+			{% elseif investorLegalEntity.investor.type == constant('SAM\\InvestorBundle\\Entity\\Investor::TYPE_NATURAL_PERSON') %}
+				<img src="{{ investorLegalEntity.investor.contactMerged|picture({'imagineFilter': 'user_contact_thumb_md'}) }}" alt="{{ investorLegalEntity.investor.contactMerged.fullName }}" />
+			{% endif %}
+		</div>
+		<div class="details">
+			{% if investorLegalEntity.investor.type == constant('SAM\\InvestorBundle\\Entity\\Investor::TYPE_LEGAL_PERSON') %}
+				<div class="element-title">{{ investorLegalEntity.investor.name }}</div>
+				<span class="element-text"><strong>{{ investorLegalEntity.legalEntity.name }}</strong></span>
+				<span class="element-text">{{ investorLegalEntity.investmentAmount|format_number('k€') }} (soit {{ investorLegalEntity.investmentPercentage|format_number('%') }} des {{ (investorLegalEntity.legalEntity.fundsRaised/1000)|format_number() }} du véhicule)</span>
+			{% elseif investorLegalEntity.investor.type == constant('SAM\\InvestorBundle\\Entity\\Investor::TYPE_NATURAL_PERSON') %}
+				<div class="element-title">{{ investorLegalEntity.investor.contactMerged.fullname }}</div>
+				<span class="element-text"><strong>{{ investorLegalEntity.legalEntity.name }}</strong></span>
+				<span class="element-text">{{ investorLegalEntity.investmentAmount|format_number('k€') }} (soit {{ investorLegalEntity.investmentPercentage|format_number('%') }} des {{ (investorLegalEntity.legalEntity.fundsRaised/1000)|format_number() }} du véhicule)</span>
+			{% endif %}
+		</div>
+	</a>
+</div>

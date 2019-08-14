@@ -1,0 +1,26 @@
+@import "variables";
+
+.btn.styled {
+  + .btn {
+    margin-left: 10px;
+  }
+
+  &.btn-sm {
+    font-size: 14px!important;
+    padding: 10px 40px!important;
+  }
+
+  &.btn-xs {
+    font-size: 11px!important;
+    padding: 2px 10px!important;
+  }
+
+  &:disabled {
+    border: none;
+    background-color: $second-color-disabled;
+  }
+}
+
+.btn-no-interaction {
+  cursor: default;
+}

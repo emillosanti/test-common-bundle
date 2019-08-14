@@ -1,0 +1,73 @@
+{% set id = "__document_id__" %}
+{% set url = "__document_url__" %}
+{% set name = "__document_name__" %}
+{% set createdAt = "__document_created_at__" %}
+{% set author = app.user.fullName %}
+{% set authorPicture = app.user|picture({'imagineFilter': 'user_contact_thumb_sm'}) %}
+{% if document is defined %}
+    {% set id = document.id %}
+    {% set url = document.url %}
+    {% set name = document.name %}
+    {% set createdAt = document.createdAt|date('d/m/Y') %}
+    {% set author = document.author.fullName %}
+    {% set authorPicture = document.author|picture({'imagineFilter': 'user_contact_thumb_sm'}) %}
+    {% set authorId = document.author.id %}
+{% endif %}
+
+<li class="document">
+    <div class="info-wrapper">
+        <div class="info-wrapper-logo">
+            <svg class="ico-document" viewBox="0 0 53 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Momentum---Back-Office-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="00-Entreprise---détail" transform="translate(-287.000000, -1517.000000)">
+                        <rect fill="#FFFFFF" x="0" y="0" width="1440" height="1992"></rect>
+                        <g id="Group-49" transform="translate(256.000000, 1400.000000)" fill="#9B9B9B">
+                            <g id="Group-48">
+                                <g id="Group-23-Copy" transform="translate(31.000000, 117.000000)">
+                                    <g id="icon-/-document-dealflow-/-gray">
+                                        <g id="document-copy" transform="translate(0.000000, 0.000000)">
+                                            <path d="M52.0214805,7.9625 L44.4381471,0.379166667 C44.1852904,0.126428385 43.9325521,0 43.5533854,0 L5.63671875,0 C4.87838542,0 4.37279036,0.505595052 4.37279036,1.26392839 L4.37279036,59.4028568 C4.37279036,60.1610716 4.87838542,60.6666667 5.63671875,60.6666667 L51.1367187,60.6666667 C51.8950521,60.6666667 52.4006471,60.1610716 52.4006471,59.4027383 L52.4006471,8.84726172 C52.4006471,8.46797656 52.2742187,8.21523828 52.0214805,7.9625 Z M44.8173138,4.29726172 L48.1033854,7.58333333 L44.8173138,7.58333333 L44.8173138,4.29726172 Z M6.90064714,58.1389284 L6.90064714,2.52773828 L42.2895755,2.52773828 L42.2895755,8.84714323 C42.2895755,9.60547656 42.7951706,10.1110716 43.5535039,10.1110716 L49.8729089,10.1110716 L49.8729089,58.1389284 L6.90064714,58.1389284 Z" id="Shape" fill-rule="nonzero"></path>
+                                            <rect id="Rectangle" x="9.42838542" y="11.2233333" width="13.9027383" height="2.52773828"></rect>
+                                            <rect id="Rectangle" x="9.42838542" y="16.2789284" width="37.9166667" height="2.52773828"></rect>
+                                            <rect id="Rectangle" x="9.42838542" y="21.3344049" width="37.9166667" height="2.52773828"></rect>
+                                            <rect id="Rectangle" x="9.42838542" y="26.39" width="37.9166667" height="2.52773828"></rect>
+                                            <rect id="Rectangle" x="9.53333333" y="31.2" width="26.39" height="2.52773828"></rect>
+                                            <rect id="Rectangle-Copy" x="0.866666667" y="62.2772025" width="44.59" height="2.52773828"></rect>
+                                            <polygon id="Rectangle-Copy-2" transform="translate(1.263869, 35.172202) rotate(-90.000000) translate(-1.263869, -35.172202) " points="-27.9644642 33.9083333 30.4922025 33.9083333 30.4922025 36.4360715 -27.9644642 36.4360715"></polygon>
+                                            <rect id="Rectangle" x="9.42838542" y="50.5555951" width="2.52773828" height="5.05559505"></rect>
+                                            <rect id="Rectangle" x="14.4839805" y="42.9722617" width="2.52773828" height="12.6389284"></rect>
+                                            <rect id="Rectangle" x="19.539457" y="45.5" width="2.52773828" height="10.1110716"></rect>
+                                            <rect id="Rectangle" x="24.5950521" y="40.4444049" width="2.52773828" height="15.1666667"></rect>
+                                            <rect id="Rectangle" x="29.6506471" y="48.0277383" width="2.52773828" height="7.58333333"></rect>
+                                            <rect id="Rectangle" x="34.7061237" y="41.7083333" width="2.52773828" height="13.9027383"></rect>
+                                            <rect id="Rectangle" x="39.7617188" y="45.5" width="2.52773828" height="10.1110716"></rect>
+                                            <rect id="Rectangle" x="44.8173138" y="37.9166667" width="2.52773828" height="17.6944049"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <div class="info-wrapper-name">
+            <h2><a href="{{ url }}" target="_blank" class="document-name">{{ name }}</a></h2>
+            <p>
+                <img
+                    src="{{ authorPicture }}"
+                    alt="{{ author }}" title="{{ author }}">
+                <time>{{ createdAt }} par {{ author }}</time>
+            </p>
+            {% if (authorId is defined and (authorId == app.user.id or is_granted('ROLE_ADMIN'))) or authorId is not defined %}
+                <form data-remove action="{{ path('document_remove', { entity: entity, entityId: entityId, id: id }) }}" method="delete">
+                    <button
+                        class="btn btn-default btn-sm text-muted">
+                        <i class="fa fa-trash"></i> Supprimer
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</li>

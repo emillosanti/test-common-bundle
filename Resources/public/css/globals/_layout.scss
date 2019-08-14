@@ -1,0 +1,13 @@
+@import "variables";
+
+.inner-content {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media (max-width: 767px) {
+  .inner-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

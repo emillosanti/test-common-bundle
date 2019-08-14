@@ -1,0 +1,139 @@
+.search-container {
+	margin-bottom: 30px;
+
+	.search-item {
+		margin-bottom: 10px;
+		@include respond-below(md) {
+			margin-bottom: 15px;
+        }
+	}
+
+	.search-main-container {
+		.reset-filters-btn {
+			margin-top: 6px;
+		}
+
+		.search-collapse-button {
+			margin: 0 0 10px 0;
+
+			.collapsed {
+				.arrow {
+					i {
+						transform: rotate(180deg);
+					}
+				}
+			}
+			.arrow {
+				i {
+					margin-left: 6px;
+					font-size: 24px;
+					line-height: 18px;
+					vertical-align: middle;
+				}
+			}
+
+			.btn {
+				text-transform: none;
+				color: $text-color;
+				font-family: $main-fontfamily;
+				font-size: em(14);
+				border: none;
+				background: none;
+				padding: 0;
+			}
+		}
+	}
+
+	.search-advanced-container {
+		border-top: 1px solid #E1E1E1;
+		border-bottom: 1px solid #E1E1E1;
+		padding: 10px 0px 20px 0px;
+		margin-bottom: 0px;
+
+		&.collapse.in {
+			margin-bottom: 20px;
+		}
+
+		.select2-container {
+			width: 100% !important;
+		}
+	}
+
+	.form-group {
+		margin-bottom: 0px;
+	}
+
+	.search-categories {
+		@media (max-width: $media-sm) {
+			margin-top: 20px;
+		}
+
+		#search_contact_merged_categories, #search_contact_categories {
+			max-width: 100%;
+			flex-grow: 1;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			align-content: flex-start;
+			justify-content: flex-start;
+		}
+
+
+		.checkbox {
+			min-width: 200px;
+			max-width: 20%;
+			margin-bottom: 10px;
+			display: flex;
+			flex-grow: 1;
+			flex-basis: 0;
+
+			label {
+				font-size: em(14);
+				color: $text-color;
+				font-weight: 500;
+			}
+		}
+	}
+
+	.search-job {
+		@media (max-width: $media-sm) {
+			margin-bottom: 20px;
+		}
+	}
+
+	section.widget {
+		.slider-range-wrapper {
+			height: 34px;
+			padding: 6px 0px;
+		}
+	}
+}
+
+.slider-range-wrapper {
+	margin-top: 5px;
+
+	.ui-slider-range {
+		background: $main-color;
+	}
+	.ui-widget.ui-widget-content.ui-slider-horizontal {
+		background: $main-border;
+		height: 4px;
+	}
+	.ui-slider-horizontal {
+		.ui-slider-handle {
+			background: $main-color;
+			border: 2px solid $main-border;
+			margin-top: 1px;
+			width: 1.5em;
+			height: 1.5em;
+			top: -0.6em;
+			outline: none;
+		}
+	}
+	.slider-range-legend {
+		span {
+			color: $main-color;
+			outline: 0;
+		}
+	}
+}

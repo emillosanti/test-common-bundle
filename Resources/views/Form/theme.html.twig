@@ -1,0 +1,1350 @@
+{% block user_picture_choice_widget %}
+    <div class="users-picture-choice-container">
+        {% set firstUserId = null %}
+        <ul class="list-unstyled users-pictures-list">
+            {% for userId, choice in form.vars.choices %}
+                {% if loop.index == 1 %}{% set firstUserId = userId %}{% endif %}
+                <li data-id="{{ userId }}"{% if loop.index == 1 %} class="active"{% endif %}>
+                    <div>
+                        <img src="{{ choice.data|picture({'imagineFilter': 'user_contact_thumb_sm'}) }}" alt="{{ choice.data.fullName }}" title="{{ choice.data.fullName }}" />
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <input type="hidden" name="{{ full_name }}" id="{{ id }}" value="{{ firstUserId }}" />
+    </div>
+{% endblock %}
+
+{% block merge_contact_radio_widget %}
+    {% if form.children|length > 0 %}
+        <div class="row">
+            {% if addEmptyBlock %}
+                <div class="col-xs-6"></div>
+            {% endif %}
+            {% for child in form %}
+                <div class="col-xs-6">
+                    <label{% if isPicture %} class="picture-selector"{% endif %}>
+                        <input
+                                type="radio"
+                                {{ block('widget_attributes') }}
+                                {% if child.vars.value is not empty %} value="{{ child.vars.value }}"{% endif %}
+                                {% if child.vars.value == form.vars.data %} checked="checked"{% endif %}
+                        />
+                        <span>
+                            {% if isPicture %}
+                                {% if child.vars.label %}
+                                    <img src="{{ asset(contacts_dir ~ '/' ~ child.vars.label) }}" />
+                                {% endif %}
+                            {% else %}
+                                {{ label }}
+                                <p>{{ child.vars.label }}</p>
+                            {% endif %}
+                        </span>
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block merge_contact_company_widget %}
+    {% if form.children|length > 0 %}
+        <div class="row">
+            {% if addEmptyBlock %}
+                <div class="col-xs-6"></div>
+            {% endif %}
+            {% for child in form %}
+                <div class="col-xs-6">
+                    <label>
+                        <input
+                                type="radio"
+                                {{ block('widget_attributes') }}
+                                {% if child.vars.value is not empty %} value="{{ child.vars.value }}"{% endif %}
+                                {% if child.vars.value == form.vars.data %} checked="checked"{% endif %}
+                        />
+                        <span>
+                            {% for index, item in form.vars.choices %}
+                                {% if index == child.vars.value %}
+                                    Nom de l'entreprise
+                                    <p>{{ item.data.name }}</p>
+                                    {% if item.data.address %}
+                                    <br />
+                                        Adresse
+                                        <p>{{ item.data.address.address ~ " " ~ item.data.address.addressComplement }}</p>
+                                    <p>{{ item.data.address.zipCode ~ " " ~ item.data.address.city }}</p>
+                                    <p>{{ item.data.address.country|upper }}</p>
+                                {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </span>
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block merge_contact_checkbox_widget %}
+    {% if form.children|length > 0 %}
+        {% for child in form %}
+            <label>
+                <input
+                        type="checkbox"
+                        name="{{ child.vars.full_name }}"
+                        {% if child.vars.value is not empty %} value="{{ child.vars.value }}"{% endif %}
+                        {% if child.vars.value == form.vars.data %} checked="checked"{% endif %}
+                />
+                <span>
+                    {% for index, item in form.vars.choices %}
+                        {% if index == child.vars.value %}
+                            {{ item.data.typeAsString|capitalize }}
+                        {% endif %}
+                    {% endfor %}
+                    <p>{{ child.vars.label }}</p>
+                </span>
+            </label>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block merge_contact_address_widget %}
+    {% if form.children|length > 0 %}
+        {% for child in form %}
+            <label>
+                <input
+                        type="checkbox"
+                        name="{{ child.vars.full_name }}"
+                        {% if child.vars.value is not empty %} value="{{ child.vars.value }}"{% endif %}
+                        {% if child.vars.value == form.vars.data %} checked="checked"{% endif %}
+                />
+                <span>
+                    {% for index, item in form.vars.choices %}
+                        {% if index == child.vars.value %}
+                            {{ item.data.typeAsString }}
+                            <p>{{ item.data.address ~ " " ~ item.data.addressComplement }}</p>
+                            <p>{{ item.data.zipCode ~ " " ~ item.data.city }}</p>
+                            <p>{{ item.data.country|upper }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            </label>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block contact_merged_categories_widget %}
+    {% spaceless %}
+        <ul class="list-unstyled contact-categories">
+            {% for child in form %}
+                <li>
+                    <label for="contact_merged_categories_{{ child.vars.value }}">
+                        <input
+                                type="checkbox"
+                                id="contact_merged_categories_{{ child.vars.value }}"
+                                name="contact_merged[categories][]"
+                                value="{{ child.vars.value }}"
+                                {% if child.vars.data %} checked="checked"{% endif %}
+                        />
+                        <span>{{ child.vars.label }}</span>
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_categories_widget %}
+    {% spaceless %}
+        <ul class="list-unstyled contact-categories">
+            {% for child in form %}
+                <li>
+                    <label for="contact_categories_{{ child.vars.value }}">
+                        <input
+                                type="checkbox"
+                                id="contact_categories_{{ child.vars.value }}"
+                                name="contact[categories][]"
+                                value="{{ child.vars.value }}"
+                                {% if child.vars.data %} checked="checked"{% endif %}
+                        />
+                        <span>{{ child.vars.label }}</span>
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block category_categories_widget %}
+    {% spaceless %}
+        <ul class="list-unstyled contact-categories">
+            {% for child in form %}
+                <li>
+                    <label for="contact_merged_categories_{{ child.vars.value }}">
+                        <input
+                                type="checkbox"
+                                id="contact_merged_categories_{{ child.vars.value }}"
+                                name="contact_merged[categories][]"
+                                value="{{ child.vars.value }}"
+                                {% if child.vars.data %} checked="checked"{% endif %}
+                        />
+                        <span>{{ child.vars.label }}</span>
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block contact_merged_tags_row %}
+    {% spaceless %}
+        <div class="form-group contact-merged-tags">
+            <div
+                    class="form-group autocomplete-wrapper contact-merged-tags-autocomplete-select"
+                    data-url="{{ path('search_tags') }}">
+                <div class="hidden new-select2-wrapper">
+                    <a class="new-select2 add-tag"
+                       data-event="tags_merged_form_loaded" data-browser-history="false">
+                        <i class="fa fa-plus-circle"></i>
+                        <span class="text">
+                            Je ne trouve pas le tag
+                            <small>Créer le tag</small>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <br/>
+            <ul class="list-unstyled contact-tags"
+                data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                {% for key, child in form %}
+                    {{ form_widget(child) }}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_tags_entry_widget %}
+    {% spaceless %}
+        {% set value = (form.vars.data) ? form.vars.data.name : "__value__" %}
+        <li data-key="{{ form.vars.name }}">
+            <a class="tag tag-info">{{ value }}</a>
+            <a class="remove-tag tag tag-primary">X</a>
+            <input type="hidden" name="contact_merged[tags][{{ form.vars.name }}][name]" value="{{ value }}" />
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_tags_entry_widget %}
+    {% spaceless %}
+        {% set value = (form.vars.data) ? form.vars.data.name : "__value__" %}
+        <li data-key="{{ form.vars.name }}">
+            <a class="tag tag-info">{{ value }}</a>
+            <a class="remove-tag tag tag-primary">X</a>
+            <input type="hidden" name="contact[tags][{{ form.vars.name }}][name]" value="{{ value }}" />
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block contact_merged_phones_row %}
+    {% set show_default = form.vars.show_default is defined and form.vars.show_default %}
+    {% spaceless %}
+        <div class="collection-container">
+            <ul class="list-unstyled contact-phones-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                {% if form.children|length > 0 %}
+                    {% for key, child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <div class="sub-form" {% if show_default %} style="display: block" {% endif %}>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <span class="blue-title">Ajouter un téléphone</span>
+                        <hr style="margin:0" />
+                    </div>
+                </div>
+                {{ form_errors(form) }}
+                <div class="form-group row">
+                    <div class="col-sm-5">
+                        <label>Type de téléphone</label>
+                        <select id="add-phone-type" class="form-control novalidate" required="required">
+                            <option value="">Type</option>
+                            {% for choice in form.vars.prototype.children.type.vars.choices %}
+                                <option value="{{ choice.value }}" {{ choice.value == form.vars.prototype.children.type.vars.data ? 'selected' }}>{{ choice.label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Numéro</label>
+                        <input id="add-phone-number" class="form-control novalidate add-phone-input" placeholder="Numéro" required="required" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>&nbsp;</label>
+                        <a class="btn btn-primary btn-block btn-large add-phone">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-primary show-add-phone-form">Ajouter un téléphone</a>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_phones_entry_widget %}
+    {% spaceless %}
+        {% set typeLabel = "__type_label__" %}
+        {% set number = "__number__" %}
+        {% set type = "__type__" %}
+        {% if form.vars.data %}
+            {% set typeLabel = form.vars.data.typeAsString %}
+            {% set number = form.vars.data.fullNumber %}
+            {% set type = form.vars.data.type %}
+            {% if form.vars.submitted %}
+                {% set number = form.children.number.vars.value %}
+            {% endif %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}" data-type="{{ type }}">
+            <div class="form-group">
+                <label>{{ typeLabel }}</label>
+                <div class="input-group">
+                    <input type="text" name="contact_merged[phones][{{ form.vars.name }}][number]" class="form-control" value="{{ number }}"/>
+                    <a class="remove-phone input-group-addon input-group-addon-primary">X</a>
+                </div>
+                <input class="excluded" type="hidden" name="contact_merged[phones][{{ form.vars.name }}][type]" value="{{ type }}" />
+                {{ form_errors(form.children.number) }}
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_phones_entry_widget %}
+    {% spaceless %}
+        {% set typeLabel = "__type_label__" %}
+        {% set number = "__number__" %}
+        {% set type = "__type__" %}
+        {% if form.vars.data %}
+            {% set typeLabel = form.vars.data.typeAsString %}
+            {% set number = form.vars.data.fullNumber %}
+            {% set type = form.vars.data.type %}
+            {% if form.vars.submitted %}
+                {% set number = form.children.number.vars.value %}
+            {% endif %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}" data-type="{{ type }}">
+            <div class="form-group">
+                <label>{{ typeLabel }}</label>
+                <div class="input-group">
+                    <input type="text" name="contact[phones][{{ form.vars.name }}][number]" class="form-control" value="{{ number }}"/>
+                    <a class="remove-phone input-group-addon input-group-addon-primary">X</a>
+                </div>
+                <input class="excluded" type="hidden" name="contact[phones][{{ form.vars.name }}][type]" value="{{ type }}" />
+                {{ form_errors(form.children.number) }}
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block contact_merged_emails_row %}
+    {% set show_default = form.vars.show_default is defined and form.vars.show_default %}
+    {% spaceless %}
+        <div class="collection-container">
+            <ul class="list-unstyled contact-emails-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                {% if form.children|length > 0 %}
+                    {% for key, child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <div class="sub-form" {% if show_default %} style="display: block" {% endif %}>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <span class="blue-title">Ajouter un email</span>
+                        <hr style="margin:0" />
+                    </div>
+                </div>
+                {{ form_errors(form) }}
+                <div class="form-group row">
+                    <div class="col-sm-5">
+                        <label>Type d'email</label>
+                        <select id="add-email-type" class="form-control novalidate" required="required">
+                            <option value="">Type</option>
+                            {% for choice in form.vars.prototype.children.type.vars.choices %}
+                                <option value="{{ choice.value }}" {{ choice.value == form.vars.prototype.children.type.vars.data ? 'selected' }}>{{ choice.label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Email</label>
+                        <input type="email" id="add-email-email" class="form-control novalidate add-email-input" required="required" placeholder="Email" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>&nbsp;</label>
+                        <a class="btn btn-primary btn-block btn-large add-email">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-primary show-add-email-form">Ajouter un email</a>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_emails_entry_widget %}
+    {% spaceless %}
+        {% set type = (form.vars.data) ? form.vars.data.type : "__type__" %}
+        {% set typeLabel = (form.vars.data) ? form.vars.data.typeAsString : "__type_label__" %}
+        {% set email = (form.vars.data) ? form.vars.data.email : "__email__" %}
+        <li data-key="{{ form.vars.name }}" data-type="{{ type }}">
+            <div class="form-group">
+                <label>{{ typeLabel }}</label>
+                <div class="input-group">
+                    <input type="email" class="form-control" name="contact_merged[emails][{{ form.vars.name }}][email]" value="{{ email }}"/>
+                    <a class="remove-email input-group-addon input-group-addon-primary">X</a>
+                </div>
+                <input class="excluded" type="hidden" name="contact_merged[emails][{{ form.vars.name }}][type]" value="{{ type }}"/>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_emails_entry_widget %}
+    {% spaceless %}
+        {% set type = (form.vars.data) ? form.vars.data.type : "__type__" %}
+        {% set typeLabel = (form.vars.data) ? form.vars.data.typeAsString : "__type_label__" %}
+        {% set email = (form.vars.data) ? form.vars.data.email : "__email__" %}
+        <li data-key="{{ form.vars.name }}" data-type="{{ type }}">
+            <div class="form-group">
+                <label>{{ typeLabel }}</label>
+                <div class="input-group">
+                    <input type="email" class="form-control" name="contact[emails][{{ form.vars.name }}][email]" value="{{ email }}"/>
+                    <a class="remove-email input-group-addon input-group-addon-primary">X</a>
+                </div>
+                <input class="excluded" type="hidden" name="contact[emails][{{ form.vars.name }}][type]" value="{{ type }}"/>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block contact_merged_social_networks_row %}
+    {% spaceless %}
+        <div class="collection-container">
+            <ul class="list-unstyled contact-socials-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                {% if form.children|length > 0 %}
+                    {% for key, child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <div class="sub-form">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <span class="blue-title">Ajouter un lien</span>
+                        <hr style="margin:0" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-5">
+                        <label>Réseau social</label>
+                        <select id="add-social-type" class="form-control novalidate" required="required">
+                            <option value="">Réseau social</option>
+                            {% for choice in form.vars.prototype.children.type.vars.choices %}
+                                <option value="{{ choice.value }}">{{ choice.label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Lien</label>
+                        <input id="add-social-link" class="form-control novalidate" required="required" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>&nbsp;</label>
+                        <a class="btn btn-primary btn-block btn-large add-social">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <a class="btn btn-primary show-add-social-form">Ajouter un lien</a>
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_socialNetworks_entry_widget %}
+    {% spaceless %}
+        {% set type = (form.vars.data) ? form.vars.data.type : "__type__" %}
+        {% set inputType = "__input_type__" %}
+        {% set typeLabel = (form.vars.data) ? form.vars.data.typeAsString : "__type_label__" %}
+        {% set url = (form.vars.data) ? form.vars.data.url : "__url__" %}
+        {% if form.vars.data %}
+            {% set inputType = "text" %}
+            {% if type is constant('SAM\\AddressBookBundle\\Entity\\SocialNetwork::TYPE_FACEBOOK') or type is constant('SAM\\AddressBookBundle\\Entity\\SocialNetwork::TYPE_LINKEDIN') %}
+                {% set inputType = "url" %}
+            {% endif %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}" data-type="{{ type }}">
+            <div class="form-group">
+                <label class="contact-social-label">{{ typeLabel }}</label>
+                <div class="input-group">
+                    <input type="{{ inputType }}" class="form-control" name="contact_merged[socialNetworks][{{ form.vars.name }}][url]" value="{{ url }}"/>
+                    <a class="remove-social input-group-addon input-group-addon-primary">X</a>
+                </div>
+                <input class="excluded" type="hidden" name="contact_merged[socialNetworks][{{ form.vars.name }}][type]" value="{{ type }}"/>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_socialNetworks_entry_widget %}
+    {% spaceless %}
+        {% set type = (form.vars.data) ? form.vars.data.type : "__type__" %}
+        {% set inputType = "__input_type__" %}
+        {% set typeLabel = (form.vars.data) ? form.vars.data.typeAsString : "__type_label__" %}
+        {% set url = (form.vars.data) ? form.vars.data.url : "__url__" %}
+        {% if form.vars.data %}
+            {% set inputType = "text" %}
+            {% if type is constant('SAM\\AddressBookBundle\\Entity\\SocialNetwork::TYPE_FACEBOOK') or type is constant('SAM\\AddressBookBundle\\Entity\\SocialNetwork::TYPE_LINKEDIN') %}
+                {% set inputType = "url" %}
+            {% endif %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}" data-type="{{ type }}">
+            <div class="form-group">
+                <label class="contact-social-label">{{ typeLabel }}</label>
+                <div class="input-group">
+                    <input type="{{ inputType }}" class="form-control" name="contact[socialNetworks][{{ form.vars.name }}][url]" value="{{ url }}"/>
+                    <a class="remove-social input-group-addon input-group-addon-primary">X</a>
+                </div>
+                <input class="excluded" type="hidden" name="contact[socialNetworks][{{ form.vars.name }}][type]" value="{{ type }}"/>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block contact_merged_user_read_row %}
+    {% spaceless %}
+        <div class="user-accesses-container">
+            <div class="form-group">
+                <label>Ajouter un accès</label>
+                <select class="form-control user-autocomplete-select"></select>
+            </div>
+            <div class="form-group">
+                <ul class="list-unstyled users-pictures-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                    {% for child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_userReads_entry_widget %}
+    {% spaceless %}
+        {% set userId = (form.vars.data) ? form.vars.data.user.id : '__user__' %}
+        {% set userName = (form.vars.data) ? form.vars.data.user.fullName : '__user_name__' %}
+        {% set picture = '__user_picture__' %}
+        {% if form.vars.data %}
+            {% set picture = form.vars.data ? form.vars.data.user|picture({'imagineFilter': 'user_contact_thumb_sm'}) : asset('img/unknown-user.jpg') %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}"{% if userId == app.user.id %} style="display:none;"{% endif %} data-user="{{ userId }}">
+            {% if userId != app.user.id %}
+                <img src="{{ picture }}" alt="{{ userName }}" title="{{ userName }}" />
+            {% endif %}
+            <input type="hidden" name="contact_merged[userReads][{{ form.vars.name }}][user]" value="{{ userId }}"/>
+            <a class="remove-contact-access">
+                <i class="fa fa-times"></i>
+            </a>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block contact_merged_address_row %}
+    {% spaceless %}
+        <div class="collection-container">
+            <ul class="list-unstyled contact-addresses-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                {% if form.children|length > 0 %}
+                    {% for key, child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <div class="sub-form">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <span class="blue-title">Ajouter une adresse</span>
+                        <hr style="margin:0" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Adresse</label>
+                            <input id="add-address-address" type="text" class="form-control" placeholder="Adresse" />
+                        </div>
+                        <div class="form-group">
+                            <label>Complément d'adresse</label>
+                            <input id="add-address-complement" type="text" class="form-control" placeholder="Complément d'adresse" />
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Code postal</label>
+                                    <input id="add-address-zip-code" type="text" class="form-control" placeholder="Code postal" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Ville</label>
+                                    <input id="add-address-city" type="text" class="form-control" placeholder="Ville" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Pays</label>
+                                    <input id="add-address-country" type="text" class="form-control" placeholder="Pays" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.vars.prototype.children.type) }}
+                            <select id="add-address-type" class="form-control novalidate" required="required">
+                                {% for choice in form.vars.prototype.children.type.vars.choices %}
+                                    <option value="{{ choice.value }}" {{ choice.value == form.vars.prototype.children.type.vars.data ? 'selected' }}>{{ choice.label|trans({}, form.vars.translation_domain) }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary add-address">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-primary show-add-address-form">Ajouter une adresse</a>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block contact_address_row %}
+    {% spaceless %}
+        <div class="collection-container">
+            <ul class="list-unstyled contact-addresses-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                {% if form.children|length > 0 %}
+                    {% for key, child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <div class="sub-form">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <span class="blue-title">Ajouter une adresse</span>
+                        <hr style="margin:0" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Adresse</label>
+                            <input id="add-address-address" type="text" class="form-control" placeholder="Adresse" />
+                        </div>
+                        <div class="form-group">
+                            <label>Complément d'adresse</label>
+                            <input id="add-address-complement" type="text" class="form-control" placeholder="Complément d'adresse" />
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Code postal</label>
+                                    <input id="add-address-zip-code" type="text" class="form-control" placeholder="Code postal" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Ville</label>
+                                    <input id="add-address-city" type="text" class="form-control" placeholder="Ville" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Pays</label>
+                                    <input id="add-address-country" type="text" class="form-control" placeholder="Pays" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary add-address">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-primary show-add-address-form">Ajouter une adresse</a>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_addresses_entry_widget %}
+    {% spaceless %}
+        {% set address = '__address__' %}
+        {% set addressComplement = '__address_complement__' %}
+        {% set zipCode = '__zip_code__' %}
+        {% set city = '__city__' %}
+        {% set country = '__country__' %}
+        {% set type = '__type__' %}
+        {% if form.vars.data %}
+            {% set address = form.vars.data.address %}
+            {% set addressComplement = form.vars.data.addressComplement %}
+            {% set zipCode = form.vars.data.zipCode %}
+            {% set city = form.vars.data.city %}
+            {% set country = form.vars.data.country %}
+            {% set type = form.vars.data.type %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}">
+            <div class="form-group">
+                <label>Adresse</label>
+                <input type="text" class="form-control" name="contact_merged[addresses][{{ form.vars.name }}][address]" value="{{ address }}">
+            </div>
+            <div class="form-group">
+                <label>Complément d'adresse</label>
+                <input type="text" class="form-control" name="contact_merged[addresses][{{ form.vars.name }}][addressComplement]" value="{{ addressComplement }}">
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Code postal</label>
+                        <input type="text" class="form-control" name="contact_merged[addresses][{{ form.vars.name }}][zipCode]" value="{{ zipCode }}">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Ville</label>
+                        <input type="text" class="form-control" name="contact_merged[addresses][{{ form.vars.name }}][city]" value="{{ city }}">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Pays</label>
+                        <input type="text" class="form-control" name="contact_merged[addresses][{{ form.vars.name }}][country]" value="{{ country }}">
+                    </div>
+                </div>
+            </div>
+            <input class="excluded" type="hidden" name="contact_merged[addresses][{{ form.vars.name }}][type]" value="{{ type }}" />
+            <div class="form-group text-right">
+                <a class="remove-address btn btn-warning">Supprimer cette adresse</a>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_addresses_entry_widget %}
+    {% spaceless %}
+        {% set address = '__address__' %}
+        {% set addressComplement = '__address_complement__' %}
+        {% set zipCode = '__zip_code__' %}
+        {% set city = '__city__' %}
+        {% set country = '__country__' %}
+        {% if form.vars.data %}
+            {% set address = form.vars.data.address %}
+            {% set addressComplement = form.vars.data.addressComplement %}
+            {% set zipCode = form.vars.data.zipCode %}
+            {% set city = form.vars.data.city %}
+            {% set country = form.vars.data.country %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}">
+            <div class="form-group">
+                <label>Adresse</label>
+                <input type="text" class="form-control" name="contact[addresses][{{ form.vars.name }}][address]" value="{{ address }}">
+            </div>
+            <div class="form-group">
+                <label>Complément d'adresse</label>
+                <input type="text" class="form-control" name="contact[addresses][{{ form.vars.name }}][addressComplement]" value="{{ addressComplement }}">
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Code postal</label>
+                        <input type="text" class="form-control" name="contact[addresses][{{ form.vars.name }}][zipCode]" value="{{ zipCode }}">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Ville</label>
+                        <input type="text" class="form-control" name="contact[addresses][{{ form.vars.name }}][city]" value="{{ city }}">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Pays</label>
+                        <input type="text" class="form-control" name="contact[addresses][{{ form.vars.name }}][country]" value="{{ country }}">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-right">
+                <a class="remove-address btn btn-warning">Supprimer cette adresse</a>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block vich_image_widget %}
+    {% set type = type|default('file') %}
+    {{ form_widget(form.file) }}
+{% endblock %}
+
+{% block _single_company_contacts_row %}
+    {% spaceless %}
+        <div class="contact-merged-select-wrapper">
+            <div class="form-group contact-company-autocomplete">
+                <label>{{ form_label(form) }}</label>
+                <select class="form-control contact-autocomplete contacts-autocomplete contact-merged-autocomplete-select"></select>
+            </div>
+            <div class="form-group">
+                <ul class="list-unstyled contacts company-contacts contacts-merged-pictures-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                    {% for child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _single_company_contacts_entry_widget %}
+    {% spaceless %}
+        {% set contactId = '__contact_id__' %}
+        {% set contactName = '__contact_name__' %}
+        {% set picture = '__contact_picture__' %}
+        {% set contactJob = '__contact_job__' %}
+        {% if form.vars.data %}
+            {% set contactId = form.vars.data.id %}
+            {% set contactName = form.vars.data.fullName %}
+            {% set picture = (form.vars.data.picture) ? asset(form.vars.data.picture) : asset('img/unknown-user.jpg') %}
+            {% set contactJob = (form.vars.data.job) ? form.vars.data.job : contactJob %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}" data-user="{{ contactId }}">
+            <div class="contact-merged-preview">
+                <div class="contact-picture">
+                    <img src="{{ picture }}" alt="{{ contactName }}" title="{{ contactName }}" />
+                </div>
+                <div class="contact-info">
+                    <span class="contact-name">{{ contactName }}</span>
+                    <span class="contact-job">{{ contactJob }}</span>
+                </div>
+                <a class="remove-item">
+                    <i class="fa fa-times"></i>
+                </a>
+                <input type="hidden" name="single_company[contacts][{{ form.vars.name }}]" value="{{ contactId }}"/>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _company_contacts_row %}
+    {% spaceless %}
+        <div
+                class="form-group autocomplete-wrapper contact-merged-autocomplete-select"
+                data-url="{{ path('search_contacts_merged') }}"
+                data-url404="{{ path('add_contact') }}?response_type=json"
+                data-placeholder="{{ 'label.company.search_contacts'|trans({}, 'SAMAddressBookBundle') }}"
+                data-clear>
+
+            <div class="hidden new-select2-wrapper">
+                <a class="new-select2 open-side-panel"
+                   data-event="contact_merged_form_loaded" data-browser-history="false">
+                    <i class="fa fa-plus-circle"></i>
+                    <span class="text">
+                    Je ne trouve pas la personne
+                    <small>Créer la personne</small>
+                </span>
+                </a>
+            </div>
+        </div>
+
+        <ul class="list-unstyled company-contacts" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+            {% for child in form %}
+                {{ form_widget(child) }}
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _company_contacts_entry_widget %}
+    {% spaceless %}
+        {% set contactId = '__contact_id__' %}
+        {% set contactName = '__contact_name__' %}
+        {% set picture = '__contact_picture__' %}
+        {% set contactJob = '__contact_job__' %}
+        {% if form.vars.data %}
+            {% set contactId = form.vars.data.id %}
+            {% set contactName = form.vars.data.fullName %}
+            {% set contactJob = (form.vars.data.job) ? form.vars.data.job : '' %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}">
+            <div class="contact-merged-preview">
+                {% set picture = form.vars.data|picture({'imagineFilter': 'user_contact_thumb_sm', 'placeholder': false}) %}
+                {% if picture %}
+                <div class="contact-picture">
+                    {% if form.vars.data and is_granted(constant('SAM\\AddressBookBundle\\Security\\ContactVoter::VIEW'), form.vars.data) %}
+                        <a href="{{ path('get_contact', {id: form.vars.data.id}) }}" class="open-side-panel">
+                            <img src="{{ picture }}" alt="{{ contactName }}" title="{{ contactName }}" />
+                        </a>
+                    {% else %}
+                        <img src="{{ picture }}" alt="{{ contactName }}" title="{{ contactName }}" />
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div class="contact-info">
+                    {% if form.vars.data and is_granted(constant('SAM\\AddressBookBundle\\Security\\ContactVoter::VIEW'), form.vars.data) %}
+                        <a href="{{ path('get_contact', {id: form.vars.data.id}) }}" class="open-side-panel contact-name">
+                            {{ contactName }}
+                        </a>
+                    {% else %}
+                        <span class="contact-name">{{ contactName }}</span>
+                    {% endif %}
+                    <span class="contact-job">{{ contactJob }}</span>
+                </div>
+                <a class="remove-item">
+                    <i class="fa fa-times"></i>
+                </a>
+                <input type="hidden" name="company[contacts][{{ form.vars.name }}]" value="{{ contactId }}"/>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block company_metrics_row %}
+    {% spaceless %}
+        <ul
+                id="accordion"
+                role="tablist"
+                aria-multiselectable="true"
+                class="list-unstyled"
+                data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+            {% for metric in form %}
+                {{ form_row(metric) }}
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block company_metric_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block company_metric_widget %}
+    {% set collapsed = form.year.vars.collapsed is defined and form.year.vars.collapsed %}
+    {% spaceless %}
+        <li data-index="{{ form.vars.name }}" data-year="{{ form.year.vars.value }}">
+            <div>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <button type="button" class="toggle-year {% if collapsed %} collapsed {% endif %}" data-toggle="collapse" data-target="#metric-{{ form.vars.name }}">
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="col-xs-10 year-wrapper">
+                        {{ form_widget(form.year) }}
+                        <button type="button" class="btn btn-sm remove-item btn-primary">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="metric-{{ form.vars.name }}" class="collapse {% if not collapsed %} in {% endif %}">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">{{ form_row(form.ca) }}</div>
+                    <div class="col-sm-6 col-xs-12">{{ form_row(form.ebitda) }}</div>
+
+                    <div class="col-sm-6 col-xs-12">{{ form_row(form.ebit) }}</div>
+                    <div class="col-sm-6 col-xs-12">{{ form_row(form.enterpriseValue) }}</div>
+
+                    <div class="col-sm-6 col-xs-12">{{ form_row(form.netFinancialDebt) }}</div>
+                    <div class="col-sm-6 col-xs-12">{{ form_row(form.employeesCount) }}</div>
+
+                    <div class="col-sm-6 col-xs-12">{{ form_row(form.type) }}</div>
+
+                    {% block extended_company_metric_widget %}{% endblock %}
+                </div>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block card_collection_widget %}
+    {% set class = 'form-control autocomplete-select' %}
+    {% if form.vars.attr.class is defined %}
+    {% set class = class ~ ' ' ~ form.vars.attr.class %}
+    {% endif %}
+    {% spaceless %}
+        <div class="form-group">
+            <select
+                    class="{{ class }}"
+                    data-url="{{ path(form.vars.ajax_route, form.vars.ajax_params is defined ? form.vars.ajax_params : {}) }}"
+                    data-placeholder="{{ form.vars.attr.placeholder|trans({}, form.vars.translation_domain) }}"
+                    data-list="list_{{ form.vars.id }}"
+            ></select>
+        </div>
+        <ul id="list_{{ form.vars.id }}" class="list-unstyled" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+            {% for child in form %}
+                {{ form_widget(child) }}
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block card_choice_widget %}
+    {% set contactName = '__contact_name__' %}
+    {% set picture = '__contact_picture__' %}
+    {% set contactJob = '__contact_job__' %}
+    {% set userId = '__id__' %}
+
+    {% if form.vars.data %}
+        {% set userId = (form.vars.data.id) ? form.vars.data.id : '' %}
+        {% set contactName = form.vars.data.fullName %}
+        {% set picture = (form.vars.data.picture) ? form.vars.data|picture({'imagineFilter': 'user_contact_thumb_sm'}) : asset('img/unknown-user.jpg') %}
+        {% set contactJob = (form.vars.data.job) ? form.vars.data.job : '' %}
+    {% endif %}
+    <li data-index="{{ form.vars.name }}" data-user="{{ userId }}">
+        <div class="contact-merged-preview">
+            <div class="contact-picture">
+                <img src="{{ picture }}" alt="{{ contactName }}" title="{{ contactName }}">
+            </div>
+            <div class="contact-info">
+                <span class="contact-name">{{ contactName }}</span>
+                <span class="contact-job">{{ contactJob }}</span>
+            </div>
+            <a class="remove-item">
+                <i class="fa fa-times"></i>
+            </a>
+            {% set type = type|default('hidden') %}
+            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </div>
+    </li>
+{% endblock %}
+
+{% block date_widget %}
+    {% set type = type|default('text') %}
+    <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} class="form-control datepicker"/>
+{% endblock %}
+
+{% block _search_deal_flow_step_widget %}
+    {% for item in form %}
+        {% set step = null %}
+        {% for choice in form.vars.choices %}
+            {% if choice.data.id == item.vars.value %}
+                {% set step = choice.data %}
+            {% endif %}
+        {% endfor %}
+        {% if step %}
+            {% include '@SAMCommon/Form/_search_deal_flow_step_widget_single.html.twig' %}
+        {% endif %}
+    {% endfor %}
+    {% if form.placeholder is defined %}
+        {% set item = form.placeholder %}
+        {% set step = null %}
+        {% include '@SAMCommon/Form/_search_deal_flow_step_widget_single.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block _search_deal_flow_layout_widget %}
+    <ul class="list-unstyled deal-flow-layout">
+        {% for child in form %}
+            <li>
+                <input
+                        type="radio"
+                        name="{{ child.vars.full_name }}"
+                        id="{{ child.vars.id }}"
+                        {% if child.vars.value is not empty %} value="{{ child.vars.value }}"{% endif %}
+                        {% if child.vars.value == form.vars.data %} checked="checked"{% endif %}
+                />
+                <label for="{{ child.vars.id }}">
+                    <i class="fa fa-{{ child.vars.value }}" aria-hidden="true"></i>
+                </label>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block contact_merged_reminder_assignee_row %}
+    {% spaceless %}
+        <div class="user-accesses-container">
+            <div class="form-group">
+                <label class="control-label">Assigné à</label>
+                <select class="form-control user-autocomplete-select"></select>
+            </div>
+            <div class="form-group">
+                <ul id="user-accesses-list" class="list-unstyled users-pictures-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+                    {% for child in form %}
+                        {{ form_widget(child) }}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_reminder_assignees_entry_widget %}
+    {% spaceless %}
+        {% set userId = (form.vars.data) ? form.vars.data.user.id : '__user__' %}
+        {% set userName = (form.vars.data) ? form.vars.data.user.fullName : '__user_name__' %}
+        {% set job = (form.vars.data) ? form.vars.data.user.job : '__job__' %}
+        {% set picture = '__user_picture__' %}
+        {% if form.vars.data %}
+            {% set picture = form.vars.data ? form.vars.data.user|picture({'imagineFilter': 'user_contact_thumb_sm'}) : asset('img/unknown-user.jpg') %}
+        {% endif %}
+        <li data-key="{{ form.vars.name }}" data-user="{{ userId }}">
+            <img src="{{ picture }}" alt="{{ userName }}" title="{{ userName }}" />
+            <div>
+                {{ userName }} <br/>
+                <span>{{ job }}</span>
+            </div>
+            <input type="hidden" name="contact_merged_reminder[assignees][{{ form.vars.name }}][user]" value="{{ userId }}"/>
+            <a class="remove-contact-access">
+                <i class="fa fa-times"></i>
+            </a>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _contact_merged_reminder_deadline_widget %}
+    <div id="contact_merged_reminder_deadline" class="form-inline form-control">
+        <input type="hidden" id="contact_merged_reminder_deadline_date_day" name="contact_merged_reminder[deadline][date][day]" value="{{ form.children.date.day.vars.value }}" />
+        <input type="hidden" id="contact_merged_reminder_deadline_date_month" name="contact_merged_reminder[deadline][date][month]" value="{{ form.children.date.month.vars.value }}" />
+        <input type="hidden" id="contact_merged_reminder_deadline_date_year" name="contact_merged_reminder[deadline][date][year]" value="{{ form.children.date.year.vars.value }}" />
+        <input type="hidden" id="contact_merged_reminder_deadline_time_hour" name="contact_merged_reminder[deadline][time][hour]" value="{{ form.children.time.hour.vars.value }}" />
+        <input type="hidden" id="contact_merged_reminder_deadline_time_minute" name="contact_merged_reminder[deadline][time][minute]" value="{{ form.children.time.minute.vars.value }}" />
+
+        <ul id="reminder-date-options" class="list-unstyled reminder-options-list">
+            <li data-days="0">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-circle-thin fa-stack-2x fa-thin-3x"></i>
+                    <i class="fa fa-arrow-down fa-stack-1x fa-thin-4x"></i>
+                </span><br/>
+                Aujourd'hui
+            </li>
+            <li data-days="1">
+                <span class="fa-stack fa-2x fa-thin-3x">
+                    <i class="fa fa-circle-thin fa-stack-2x fa-thin-3x"></i>
+                    <i class="fa fa-arrow-right fa-stack-1x fa-thin-4x"></i>
+                </span><br/>
+                Demain
+            </li>
+            <li data-days="7">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-circle-thin fa-stack-2x fa-thin-3x"></i>
+                    <i class="fa fa-angle-double-right fa-stack-1x fa-thin-1x"></i>
+                </span><br/>
+                J+7
+            </li>
+            <li data-days="custom">
+                <span class="fa-stack fa-2x fa-thin-3x">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <i class="fa fa-ellipsis-h fa-stack-1x"></i>
+                </span><br/>
+                Personnaliser
+            </li>
+        </ul>
+
+        <div id="reminder-datepicker-option">
+            <input type="text" id="reminder-datepicker" class="form-control" readonly="readonly" />
+            <span class="reminder-datepicker-trigger"><i class="fa fa-calendar"></i></span>
+        </div>
+
+        <ul id="reminder-time-options" class="list-unstyled reminder-options-list">
+            <li data-hour="9">
+                <span class="fa-stack fa-2x fa-thin-3x">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <span class="fa-thin-1x">9h</span>
+                </span><br/>
+                matin
+            </li>
+            <li data-hour="14">
+                <span class="fa-stack fa-2x fa-thin-3x">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <span class="fa-thin-1x">14h</span>
+                </span><br/>
+                après-midi
+            </li>
+            <li data-hour="18">
+                <span class="fa-stack fa-2x fa-thin-3x">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <span class="fa-thin-1x">18h</span>
+                </span><br/>
+                Soir
+            </li>
+            <li data-hour="custom">
+                Personnaliser<br />
+                <input type="text" id="reminder-timepicker" class="form-control" readonly="readonly" />
+            </li>
+        </ul>
+
+        <div class="reminder-deadline-box">
+            <span class="reminder-deadline-box-text">-</span>
+            <a class="reminder-deadline-box-edit">
+                <i class="fa fa-pencil"></i>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{%- block number_widget -%}
+    {# https://github.com/symfony/symfony/issues/8106 #}
+    {% if value is not empty %}
+        {% set value = value|replace({',': '.'})|number_format(precision|default(scale|default(2)), '.', '') %}
+    {% endif %}
+    {%- set type = type|default('number') -%}
+    {{ block('form_widget_simple') }}
+{%- endblock number_widget -%}
+
+{% block _appbundle_company_defaultReportingTemplate_widget %}
+    {% spaceless %}
+        <ul {{ block('widget_container_attributes') }}>
+            {% for child in form if not child.rendered %}
+                <li>
+                    {{ form_widget(child) }}
+                    {{ form_label(child) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _appbundle_company_visible_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }} <span>{{ form.vars.label }}</span>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _appbundle_company_contacts_row %}
+    {% spaceless %}
+        <ul id="contacts-list" class="list-unstyled company-contacts-list" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
+            {% if form.children|length > 0 %}
+                {% for key, child in form %}
+                    {{ form_widget(child) }}
+                {% endfor %}
+            {% endif %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _appbundle_company_contacts_entry_widget %}
+    {% spaceless %}
+        <li data-key="{{ form.vars.name }}">
+            <div class="form-group col-lg-2">
+                {{ form_label(form.civility) }}
+                {{ form_widget(form.civility) }}
+            </div>
+
+            <div class="form-group col-lg-5">
+                {{ form_label(form.firstName) }}
+                {{ form_widget(form.firstName) }}
+            </div>
+            <div class="form-group col-lg-5">
+                {{ form_label(form.lastName) }}
+                {{ form_widget(form.lastName) }}
+            </div>
+            <div class="form-group col-lg-12">
+                {{ form_label(form.job) }}
+                {{ form_widget(form.job) }}
+            </div>
+            <div class="form-group col-lg-6">
+                {{ form_label(form.phone) }}
+                {{ form_widget(form.phone) }}
+            </div>
+            <div class="form-group col-lg-6">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                <div class="error email-error">
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+            <div class="form-group col-lg-12 contact-checkbox-row">
+                {{ form_widget(form.reportingsEnabled) }}
+                <span>{{ form.children.reportingsEnabled.vars.label }}</span>
+            </div>
+            <div class="form-group col-lg-12 contact-checkbox-row">
+                {{ form_widget(form.ccEnabled) }}
+                <span>{{ form.children.ccEnabled.vars.label }}</span>
+            </div>
+            <div class="form-group text-right remove-button-container">
+                <a class="remove-interlocutor btn btn-sm btn-warning"><i class="icon-cross"></i> Supprimer cet interlocuteur</a>
+            </div>
+        </li>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _investor_search_step_widget %}
+    {% for item in form %}
+        {% set step = null %}
+        {% for choice in form.vars.choices %}
+            {% if choice.data.id == item.vars.value %}
+                {% set step = choice.data %}
+            {% endif %}
+        {% endfor %}
+        {% if step %}
+            {% include '@SAMInvestor/Form/_investor_search_step_widget_single.html.twig' %}
+        {% endif %}
+    {% endfor %}
+    {% set item = form.placeholder %}
+    {% if item %}
+        {% set step = null %}
+        {% include '@SAMInvestor/Form/_investor_search_step_widget_single.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block _investor_search_layout_widget %}
+    <ul class="list-unstyled deal-flow-layout">
+        {% for child in form %}
+            {% set icon = "fa-list" %}
+            {% if "list" == child.vars.value %}
+                {% set icon = "fa-table" %}
+            {% endif %}
+            <li>
+                <input
+                        type="radio"
+                        name="{{ child.vars.full_name }}"
+                        id="{{ child.vars.id }}"
+                        {% if child.vars.value is not empty %} value="{{ child.vars.value }}"{% endif %}
+                        {% if child.vars.value == form.vars.data %} checked="checked"{% endif %}
+                />
+                <label for="{{ child.vars.id }}">
+                    <i class="fa {{ icon }}" aria-hidden="true"></i>
+                </label>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block contact_merged_legal_entities_widget %}
+    {% spaceless %}
+        <ul class="list-unstyled contact-categories">
+            {% for child in form %}
+                <li>
+                    <label for="contact_merged_legalEntities_{{ child.vars.value }}">
+                        <input
+                                type="checkbox"
+                                id="contact_merged_legalEntities_{{ child.vars.value }}"
+                                name="contact_merged[legalEntities][]"
+                                value="{{ child.vars.value }}"
+                                {% if child.vars.data %} checked="checked"{% endif %}
+                        />
+                        <span>{{ child.vars.label }}</span>
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}

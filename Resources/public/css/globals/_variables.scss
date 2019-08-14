@@ -1,0 +1,102 @@
+// COLORS
+$main-color: #2196F3;
+$main-color-hover: #64BAFF;
+$background-hover-main: #EAF7FE;
+$main-color-disabled: #D8D8D8;
+
+$second-color: #8BC34A;
+$second-color-hover: #BBE985;
+$second-color-disabled: #D8D8D8;
+
+$danger-color: #D1165D;
+$danger-color-hover: #E0437E;
+$danger-color-disabled: #D8D8D8;
+$info-color: #2196F3;
+$success-color: #8BC34A;
+$warning-color: #d12c16;
+
+$text-color-lighter: #9B9B9B;
+$text-color-lightest: #E2E2E2;
+$text-color: #424242;
+$text-color-locked: #9B9B9B;
+
+$body-bg: #FAFAFA;
+$side-bg: #FFFFFF;
+
+$panel-bg: #fafafa;
+$panel-bg-white: #fff;
+$panel-border-color: #E2E2E2;
+$panel-border: none;
+
+$table-border-color: #E2E2E2;
+$table-bg: #FFFFFF;
+$table-bg-odd: #FAFAFA;
+
+$border-color-light: #fafafa;
+$main-border: #E2E2E2;
+$input-border: #E1E1E1;
+$input-border-active: #2196F3;
+$logo-border: #EBEBEB;
+
+$main-button-background: #fafafa;
+
+// CHART COLORS
+$chart-color-1: #2196F3;
+$chart-color-2: #13588e;
+$chart-color-3: #101821;
+$chart-color-4: #5E7CE2;
+$chart-color-5: #3434F5;
+$chart-color-6: #c8c8c8;
+$chart-color-7: #3CBA12;
+$chart-color-8: #8BC34A;
+$chart-color-9: #12F493;
+$chart-color-10: #FFEE00;
+
+// LOADERS COLORS
+$loader-color-1: #2196F3;
+$loader-color-2: #8BC34A;
+$loader-color-3: #c8c8c8;
+$loader-color-4: #5E7CE2;
+$loader-color-5: #3CBA12;
+
+// SELECTORS
+$selectors-hover: "&:hover, &:active, &:focus,&:active:hover, &.active:hover, &:active:focus, &.active:focus";
+$selectors-disabled: "&[disabled], &:disabled, &[disabled]:hover, &:disabled:hover";
+$selectors-clicked: "&:visited, &:active";
+
+// GRADIENTS
+$main-gradient: linear-gradient(90deg, #2196F3 0%, #8BC34A 100%);
+$main-gradient-inverse: linear-gradient(90deg, #8BC34A 0%, #2196F3 100%);
+@mixin vertical-gradient() {
+	-webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from($main-color), to($second-color)) 1 100%; 
+	-webkit-border-image: -webkit-linear-gradient($main-color, $second-color) 1 100%; 
+	-moz-border-image: -moz-linear-gradient($main-color, $second-color) 1 100%; 
+	-o-border-image: -o-linear-gradient($main-color, $second-color) 1 100%; 
+	border-image: linear-gradient(to bottom, $main-color, $second-color) 1 100%;
+}
+
+// FONTS
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+$main-fontfamily: 'Montserrat', Arial, sans-serif;
+$main-fontcolor: $text-color;
+
+$main-fontsize: 12;
+
+@function em($pixels, $context: $main-fontsize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  //@return $pixels / $context * 1em;
+  @return $pixels;
+}
+
+// MEDIA BREACKPOINTS
+$media-sm: 767px;
+$media-md: 991px;
+$media-lg: 1199px;
+
+// SHADOWS
+$text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);

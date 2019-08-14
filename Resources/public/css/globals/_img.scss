@@ -1,0 +1,38 @@
+img, i {
+  &.xs {
+    font-size: 25px;
+    height: 25px;
+    width: 25px;
+  }
+  &.sm {
+    font-size: 60px;
+    height: 60px;
+    width: 60px;
+  }
+  &.md {
+    font-size: 85px;
+    height: 85px;
+    width: 85px;
+  }
+  &.lg {
+    font-size: 165px;
+    height: 165px;
+    width: 165px;
+  }
+}
+
+img.pull-left, i.pull-left {
+  &.xs + div {
+    padding-left: 50px;
+    @include respond-below(xs) {
+      padding-left: 0px;
+    }
+  }
+
+  &.sm + div {
+    padding-left: 90px;
+    @include respond-below(xs) {
+      padding-left: 0px;
+    }
+  }
+}
