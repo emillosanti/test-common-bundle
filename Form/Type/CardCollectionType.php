@@ -41,6 +41,22 @@ class CardCollectionType extends AbstractType
         if (array_key_exists('ajax_params', $options)) {
             $view->vars['ajax_params'] = $options['ajax_params'];
         }
+
+        if ($options['autocomplete_preloaded']) {
+            $preloadedOptions = [];
+
+            foreach ($view->vars['prototype']->vars['choices'] as $choice) {
+                $preloadedOptions[] = [
+                    'id' => $choice->value,
+                    'name' => $choice->label,
+                    'text' => $choice->label,
+                    'transform' => false,
+                    'visible' => true,
+                ];
+            }
+
+            $view->vars['preloaded_options'] = $preloadedOptions;
+        }
     }
 
     /**

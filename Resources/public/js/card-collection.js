@@ -52,49 +52,65 @@ jQuery(function($) {
                     escapeMarkup: function (markup) {
                         return markup;
                     },
-                    ajax: {
-                        url: select.data('url'),
-                        dataType: 'json',
-                        delay: 300,
-                        data: function (params) {
-                            return {search: {query: encodeURIComponent(params.term)}};
-                        },
-                        processResults: function (data) {
-                            var results = [];
-                            if ("function" === typeof(data.map)) {
-                                results = data
-                                    .map(function(item) {
-                                        return {
-                                            id: item.id,
-                                            text: typeof item.transform !== 'undefined' && item.transform === false ? item.text : item.name,
-                                            contact_name: item.name,
-                                            contact_picture: item.picture,
-                                            contact_job: item.job
-                                        }
-                                    });
-                            }
-
-                            if (select.hasClass('contact-list-autocomplete') || select.parent().hasClass('contact-list-autocomplete') && data.length == 0) {
-                                var enteredName = $('input.select2-search__field').val();
-                                if (enteredName) {
-                                    var message = '<a class="empty-select2 create-contact-list" href="" data-name="' + enteredName + '" data-browser-history="false">' +
-                                        '<i class="sam-ico add-contact-ico"></i>' +
-                                        '<i class="fa fa-plus-circle"></i> ' +
-                                        '<span class="text one-row"> ' +
-                                            'Créer une nouvelle liste "' + enteredName +
-                                        '"</span>' +
-                                        '</a>';
-
-                                    results.push({ text: message })
-                                }
-                            }
-
-                            return {
-                                results: typeof selectTransformer === 'function' ? selectTransformer(results) : results
-                            };
-                        }
-                    }
                 };
+
+            if ($(this).hasClass('autocomplete-preloaded')) {
+                var choicesattr = $(this).data('preloadedoptions');
+                var mappedOptions = choicesattr.map(function (item) {
+                    return {
+                        id: item.id,
+                        text: typeof item.transform !== 'undefined' && item.transform === false ? item.text : item.name,
+                        contact_name: item.name,
+                        contact_picture: item.picture,
+                        contact_job: item.job
+                    }
+                });
+
+                options["data"] = mappedOptions;
+            } else {
+              options["ajax"] = {
+                  url: select.data('url'),
+                  dataType: 'json',
+                  delay: 300,
+                  data: function (params) {
+                      return {search: {query: encodeURIComponent(params.term)}};
+                  },
+                  processResults: function (data) {
+                      var results = [];
+                      if ("function" === typeof(data.map)) {
+                          results = data
+                              .map(function(item) {
+                                  return {
+                                      id: item.id,
+                                      text: typeof item.transform !== 'undefined' && item.transform === false ? item.text : item.name,
+                                      contact_name: item.name,
+                                      contact_picture: item.picture,
+                                      contact_job: item.job
+                                  }
+                              });
+                      }
+
+                      if (select.hasClass('contact-list-autocomplete') || select.parent().hasClass('contact-list-autocomplete') && data.length == 0) {
+                          var enteredName = $('input.select2-search__field').val();
+                          if (enteredName) {
+                              var message = '<a class="empty-select2 create-contact-list" href="" data-name="' + enteredName + '" data-browser-history="false">' +
+                                  '<i class="sam-ico add-contact-ico"></i>' +
+                                  '<i class="fa fa-plus-circle"></i> ' +
+                                  '<span class="text one-row"> ' +
+                                      'Créer une nouvelle liste "' + enteredName +
+                                  '"</span>' +
+                                  '</a>';
+
+                              results.push({ text: message })
+                          }
+                      }
+
+                      return {
+                          results: typeof selectTransformer === 'function' ? selectTransformer(results) : results
+                      };
+                  }
+              };
+            }
 
             select.select2(options);
             select.on('select2:select', function(e) {

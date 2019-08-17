@@ -995,6 +995,9 @@
                     data-url="{{ path(form.vars.ajax_route, form.vars.ajax_params is defined ? form.vars.ajax_params : {}) }}"
                     data-placeholder="{{ form.vars.attr.placeholder|trans({}, form.vars.translation_domain) }}"
                     data-list="list_{{ form.vars.id }}"
+                    {% if (form.vars.preloaded_options is defined) %}
+                        data-preloadedoptions="{{ form.vars.preloaded_options|json_encode|raw|e('html_attr') }}"
+                    {% endif %}
             ></select>
         </div>
         <ul id="list_{{ form.vars.id }}" class="list-unstyled" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
