@@ -99,10 +99,10 @@ moment@^2.10.2, moment@^2.22.2, moment@^2.9.0:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
-select2@4.0.6-rc.0:
-  version "4.0.6-rc.0"
-  resolved "https://registry.yarnpkg.com/select2/-/select2-4.0.6-rc.0.tgz#d982d2220d5d032b5c5d0545806bc730acb8e729"
-  integrity sha1-2YLSIg1dAytcXQVFgGvHMKy45yk=
+select2@4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/select2/-/select2-4.0.6.tgz#88697c96e08b65a5963c2806c1d5eefbceec0a7e"
+  integrity sha512-P5NqUcH+FFBwHAbC2mEWMDS446YdIGvXRM9tSGFLuNIFRP/ng0IOtjJ4zkzVyCl43RM/NyXJa6SAPT9MGg634A==
   dependencies:
     almond "~0.3.1"
     jquery-mousewheel "~3.1.13"
